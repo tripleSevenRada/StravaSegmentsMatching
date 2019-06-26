@@ -15,7 +15,7 @@ class TestLonMargin{
             val sign = random.nextBoolean()
             var degrees = degreesRatio * 90.0
             if(sign) degrees = - degrees
-            println("degrees: $degrees value: ${getLonMargin(degrees)}")
+            //println("degrees: $degrees value: ${getLonMargin(degrees)}")
         }
     }
 
