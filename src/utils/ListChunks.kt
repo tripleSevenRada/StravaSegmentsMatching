@@ -16,10 +16,11 @@ class ListChunks<T>(val data: List<T>, val chunkSize: Int) {
                 currentChunk.add(data[i])
             }
             fun clipChunkSize(ch: Int): Int = if (ch < CHUNK_SIZE) CHUNK_SIZE else ch
-            val clippedChunk = clipChunkSize(chunkSize)
-            for (i in 0 until data.size) {
+            val clippedChunk = (clipChunkSize(chunkSize)) - 1
+            for (i in data.indices) {
                 if (i == 0) {
                     push(i)
+                    if (i == data.lastIndex) newChunk()
                     continue
                 }
                 if (i % clippedChunk == 0) {

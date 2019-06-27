@@ -16,7 +16,7 @@ fun parseGPX(path: String): List<Location>{
         val xmlFile = File(path)
         val dbFactory = DocumentBuilderFactory.newInstance()
         val dBuilder = dbFactory.newDocumentBuilder()
-        val xmlInput = InputSource(StringReader(xmlFile.readText()))
+        val xmlInput = InputSource(StringReader(xmlFile.readText().trim().replaceFirst("^([\\W]+)<","<")))
         val doc = dBuilder.parse(xmlInput)
         return doc
     }

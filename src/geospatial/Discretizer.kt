@@ -7,8 +7,8 @@ import utils.ListChunks
 
 const val DISCRETIZE_DISTANCE = 3.0
 //--------------------------------
-const val THRESHOLD_PARALLEL = 16
-const val CHUNK_SIZE = 12
+const val THRESHOLD_PARALLEL = 46
+const val CHUNK_SIZE = 26
 //--------------------------------
 
 class Discretizer {

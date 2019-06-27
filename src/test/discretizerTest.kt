@@ -140,7 +140,9 @@ class DiscretizerTests {
                 "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Glockner.gpx",
                 "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Glockner_Salz_Berchtensgarden.gpx",
                 "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/klasika_do misuriny.gpx",
-                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Salzburg_Praha355.gpx"
+                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Salzburg_Praha355.gpx",
+                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/2/doCelak.gpx",
+                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/2/doMil.gpx"
         )
 
         paths.forEach {

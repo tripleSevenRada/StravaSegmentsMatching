@@ -22,15 +22,24 @@ class ListChunksTest {
     }
 
     @Test
+    fun assertOne() {
+        for (i in 0..100) {
+            val chunks = ListChunks<Int>(data1, i).chunks
+            assert(chunks.size == 1)
+            assert(chunks[0].size == 1)
+        }
+    }
+
+    @Test
     fun eyeBall() {
         for (i in 1..123) dataBig.add(i)
         val sets = listOf<List<Int>>(dataEmpty, data1, data2, data3, data, dataBig)
         sets.forEach { set ->
             println("SET: $set")
-            for (i in CHUNK_SIZE..30) {
+            for (i in CHUNK_SIZE..CHUNK_SIZE + 8) {
                 val chunks = ListChunks<Int>(set, i).chunks
-                //println("CHUNK: $i")
-                //println(chunks)
+                println("CHUNK: $i")
+                println(chunks)
             }
         }
     }
