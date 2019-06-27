@@ -3,13 +3,13 @@ package geospatial
 import dataClasses.Location
 import interfaces.Discretizable
 import kotlinx.coroutines.*
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
-import java.util.*
-import kotlin.coroutines.CoroutineContext
+import utils.ListChunks
 
 const val DISCRETIZE_DISTANCE = 3.0
-const val THRESHOLD_PARALLEL = 6
+//--------------------------------
+const val THRESHOLD_PARALLEL = 16
+const val CHUNK_SIZE = 12
+//--------------------------------
 
 class Discretizer {
 
@@ -93,12 +93,8 @@ class Discretizer {
             }
             return result
         }
-        val chunks = mutableListOf<List<Location>>()
-        // TODO
-        val chunk1 = locations.subList(0, (locations.size / 2) + 1)
-        val chunk2 = locations.subList(locations.size / 2, locations.size)
-        chunks.add(chunk1)
-        chunks.add(chunk2)
+
+        val chunks = ListChunks<Location>(locations, CHUNK_SIZE).chunks
 
         runBlocking {
             val deferredArray = Array<Deferred<List<Location>>>(chunks.size) { index ->
@@ -108,8 +104,8 @@ class Discretizer {
             deferredArray.forEach { deferred ->
                 val deferredList = deferred.await()
                 if (!first) {
-                    val deferredListFirstReduced = deferredList.subList(1, deferredList.size)
-                    result.addAll(deferredListFirstReduced)
+                    val deferredListFirstElementDeleted = deferredList.subList(1, deferredList.size)
+                    result.addAll(deferredListFirstElementDeleted)
                 } else {
                     result.addAll(deferredList)
                 }

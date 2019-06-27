@@ -9,7 +9,6 @@ import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import java.util.*
-import kotlin.system.measureTimeMillis
 
 fun Location.toTrkptRecord(): String = "<trkpt lat=\"${this.lat}\" lon=\"${this.lon}\"></trkpt>"
 fun Location.toWptRecord(): String = "<wpt lat=\"${this.lat}\" lon=\"${this.lon}\"></wpt>"
@@ -22,7 +21,7 @@ class DiscretizerTests {
             val discretized = Discretizer().discretize(route)
             val discretizedParallel = Discretizer().discretizeInParallel(route)
             assertEquals(discretized.size, discretizedParallel.size)
-            assertEquals(discretized, discretizedParallel)
+            assert(assertListsEqual(discretized, discretizedParallel))
         }
     }
 
@@ -82,10 +81,12 @@ class DiscretizerTests {
 
     @Test
     fun generateRandomRouteDiscretizeItAssertDistances() {
-        repeat(10) {
+        var locationsCount = 0
+        val repeatTest = 80
+        repeat(repeatTest) {
             val rnd = Random()
             val routeList = mutableListOf<Location>()
-            repeat(211) {
+            repeat(locationsCount) {
                 val location = Location(-0.5 + rnd.nextDouble(), -0.5 + rnd.nextDouble())
                 routeList.add(location)
             }
@@ -95,30 +96,73 @@ class DiscretizerTests {
                 val discretized = Discretizer().discretize(route)
                 val time1 = System.currentTimeMillis() - start1
 
-                assertEquals(routeList[0].lat, discretized[0].lat)
-                assertEquals(routeList[0].lon, discretized[0].lon)
+                if(routeList.size < 2){
+                    assertEquals(discretized.size, routeList.size)
+                }
 
-                assertEquals(routeList[routeList.lastIndex].lat, discretized[discretized.lastIndex].lat)
-                assertEquals(routeList[routeList.lastIndex].lon, discretized[discretized.lastIndex].lon)
+                if(routeList.size > 0) {
+                    assertEquals(routeList[0].lat, discretized[0].lat)
+                    assertEquals(routeList[0].lon, discretized[0].lon)
 
-                for (i in 0..discretized.size - 2) {
-                    val dist = Haversine.haversineInM(
-                            discretized[i].lat,
-                            discretized[i].lon,
-                            discretized[i + 1].lat,
-                            discretized[i + 1].lon)
-                    assert(dist <= DISCRETIZE_DISTANCE)
+                    assertEquals(routeList[routeList.lastIndex].lat, discretized[discretized.lastIndex].lat)
+                    assertEquals(routeList[routeList.lastIndex].lon, discretized[discretized.lastIndex].lon)
+                }
+
+                if(routeList.size > 2) {
+                    for (i in 0..discretized.size - 2) {
+                        val dist = Haversine.haversineInM(
+                                discretized[i].lat,
+                                discretized[i].lon,
+                                discretized[i + 1].lat,
+                                discretized[i + 1].lon)
+                        assert(dist <= DISCRETIZE_DISTANCE)
+                    }
                 }
 
                 val start2 = System.currentTimeMillis()
                 val discretizedParallel = Discretizer().discretizeInParallel(route)
                 val time2 = System.currentTimeMillis() - start2
 
-                println("times: non-parallel $time1  /  parallel: $time2")
-                println("sizes: discretized: ${discretized.size}, discretized in parallel: ${discretizedParallel.size}")
-                assertEquals(discretized, discretizedParallel)
+                println("times: non-parallel $time1  --  parallel: $time2")
+                println("locations count: $locationsCount  out of: $repeatTest -- sizes: discretized: ${discretized.size}, discretized in parallel: ${discretizedParallel.size}")
+                assertEquals(discretized.size, discretizedParallel.size)
+                assert(assertListsEqual(discretized, discretizedParallel))
+                locationsCount ++
             }
         }
+    }
+
+    @Test
+    fun realSamplesComparison(){
+
+        val paths = listOf<String>(
+                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Bolzano_out.gpx",
+                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Glockner.gpx",
+                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Glockner_Salz_Berchtensgarden.gpx",
+                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/klasika_do misuriny.gpx",
+                "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Salzburg_Praha355.gpx"
+        )
+
+        paths.forEach {
+            println("reading: $it")
+            val locations = parseGPX(it)
+            runBlocking {
+
+                val start1 = System.currentTimeMillis()
+                val discretized = Discretizer().discretize(Route(locations))
+                val time1 = System.currentTimeMillis() - start1
+                val start2 = System.currentTimeMillis()
+                val discretizedParallel = Discretizer().discretizeInParallel(Route(locations))
+                val time2 = System.currentTimeMillis() - start2
+
+                println("times: non-parallel $time1  --  parallel: $time2")
+
+                assert(assertListsEqual(discretized, discretizedParallel))
+
+            }
+
+        }
+
     }
 
     /*
@@ -157,8 +201,19 @@ class DiscretizerTests {
             }
             val discretizedParallel = Discretizer().discretizeInParallel(route)
             println("sizes: discretized: ${discretized.size}, discretized in parallel: ${discretizedParallel.size}")
-            assertEquals(discretized, discretizedParallel)
+            assert(assertListsEqual(discretized, discretizedParallel))
 
         }
+    }
+
+    private fun assertListsEqual(list1: List<Location>, list2: List<Location>): Boolean{
+        if (list1.size != list2.size) return false
+        var c = 0
+        list1.forEach {
+            if (it.lat != list2[c].lat) return false
+            if (it.lon != list2[c].lon) return false
+            c ++
+        }
+        return true
     }
 }

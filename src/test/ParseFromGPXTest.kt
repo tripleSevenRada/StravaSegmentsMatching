@@ -52,7 +52,7 @@ class ParsedGPXTests{
 
     @Test
     fun sanityTestReadGPX(){
-        val nodeList = parseGPX("/home/radim/Dropbox/outfit/segmentsTestData/realGPXMocks/segments/LabeLysa/noPass/Labe-Lysa-Mismatch.gpx")
+        val nodeList = parseGPX("/home/radim/Dropbox/outFit/segmentsTestData/realGPXMocks/segments/LabeLysa/noPass/Labe-Lysa-Mismatch.gpx")
         println("trackpoints: ${nodeList.size}")
 
         assert(nodeList.size == 35)
