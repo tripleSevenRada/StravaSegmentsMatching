@@ -11,6 +11,7 @@ const val THRESHOLD_PARALLEL = 46
 const val CHUNK_SIZE = 26
 //--------------------------------
 
+// https://proandroiddev.com/demystifying-kotlin-coroutines-6fe1f410570b
 class Discretizer {
 
     private lateinit var start: LocationNode
@@ -112,7 +113,6 @@ class Discretizer {
                 if (first) first = false
             }
         }
-
         return result
     }
 
