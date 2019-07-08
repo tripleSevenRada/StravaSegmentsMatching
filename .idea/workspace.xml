@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="89d2f0bf-b10e-498b-bf05-9c3fb31435f0" name="Default Changelist" comment="" />
+    <list default="true" id="89d2f0bf-b10e-498b-bf05-9c3fb31435f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geospatial/Polygons.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/geospatial/Polygons.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/pointsWithinTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/pointsWithinTest.kt" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,11 +18,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/pointsWithinTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-645">
-              <caret line="50" column="48" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
+            <state relative-caret-position="337">
+              <caret line="128" column="31" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="454">
+              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+              <folding>
+                <element signature="e#14#89#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/geospatial/Discretizer.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2">
+              <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/geospatial/Polygons.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="50" column="65" selection-start-line="50" selection-start-column="58" selection-end-line="50" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/matching/Matcher.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="65" lean-forward="true" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
+              <folding>
+                <element signature="e#18#128#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/ListChunksTest.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -39,6 +94,7 @@
       <find>println</find>
       <find>assertEquals(discretized, discretizedParallel)</find>
       <find>runBlocking</find>
+      <find>makeNew</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -65,13 +121,14 @@
         <option value="$PROJECT_DIR$/src/utils/ListChunks.kt" />
         <option value="$PROJECT_DIR$/src/test/discretizerTest.kt" />
         <option value="$PROJECT_DIR$/src/geospatial/Discretizer.kt" />
-        <option value="$PROJECT_DIR$/src/geospatial/Polygons.kt" />
-        <option value="$PROJECT_DIR$/src/test/pointsWithinTest.kt" />
         <option value="$PROJECT_DIR$/src/matching/Matcher.kt" />
+        <option value="$PROJECT_DIR$/src/test/pointsWithinTest.kt" />
+        <option value="$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt" />
+        <option value="$PROJECT_DIR$/src/geospatial/Polygons.kt" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="224" />
     <option name="y" value="204" />
     <option name="width" value="1346" />
@@ -107,6 +164,12 @@
               <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="geospatial" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="matching" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
@@ -155,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PointsWithinBoxTest">
+  <component name="RunManager" selected="JUnit.test in StravaSegmentsMatching">
     <configuration name="DiscretizerTests.generateRandomRouteDiscretizeItAssertDistances" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="StravaSegmentsMatching" />
       <extension name="coverage">
@@ -167,22 +230,6 @@
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.DiscretizerTests" />
       <option name="METHOD_NAME" value="generateRandomRouteDiscretizeItAssertDistances" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DiscretizerTests.realSamplesComparison" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="StravaSegmentsMatching" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.DiscretizerTests" />
-      <option name="METHOD_NAME" value="realSamplesComparison" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -218,6 +265,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestRunDiscretizeMatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="StravaSegmentsMatching" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.TestRunDiscretizeMatch" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="test in StravaSegmentsMatching" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="StravaSegmentsMatching" />
       <extension name="coverage">
@@ -234,11 +296,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test in StravaSegmentsMatching" />
+        <item itemvalue="JUnit.TestRunDiscretizeMatch" />
         <item itemvalue="JUnit.PointsWithinBoxTest" />
         <item itemvalue="JUnit.DiscretizerTests.generateRandomRouteDiscretizeItAssertDistances" />
-        <item itemvalue="JUnit.test in StravaSegmentsMatching" />
         <item itemvalue="JUnit.ListChunksTest" />
-        <item itemvalue="JUnit.DiscretizerTests.realSamplesComparison" />
       </list>
     </recent_temporary>
   </component>
@@ -253,42 +315,42 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_in_StravaSegmentsMatching - 2019.06.27 at 21h 05m 15s.xml">
+    <history-entry file="TestRunDiscretizeMatch - 2019.07.08 at 21h 44m 49s.xml">
+      <configuration name="TestRunDiscretizeMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRunDiscretizeMatch - 2019.07.08 at 21h 52m 14s.xml">
+      <configuration name="TestRunDiscretizeMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRunDiscretizeMatch - 2019.07.08 at 21h 53m 07s.xml">
+      <configuration name="TestRunDiscretizeMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRunDiscretizeMatch - 2019.07.08 at 21h 58m 03s.xml">
+      <configuration name="TestRunDiscretizeMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="test_in_StravaSegmentsMatching - 2019.07.08 at 22h 07m 16s.xml">
       <configuration name="test in StravaSegmentsMatching" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="test_in_StravaSegmentsMatching - 2019.06.28 at 21h 32m 17s.xml">
+    <history-entry file="TestRunDiscretizeMatch - 2019.07.08 at 22h 19m 44s.xml">
+      <configuration name="TestRunDiscretizeMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRunDiscretizeMatch - 2019.07.08 at 22h 23m 41s.xml">
+      <configuration name="TestRunDiscretizeMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRunDiscretizeMatch - 2019.07.08 at 22h 35m 08s.xml">
+      <configuration name="TestRunDiscretizeMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRunDiscretizeMatch - 2019.07.08 at 22h 35m 27s.xml">
+      <configuration name="TestRunDiscretizeMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="test_in_StravaSegmentsMatching - 2019.07.08 at 22h 37m 04s.xml">
       <configuration name="test in StravaSegmentsMatching" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="test_in_StravaSegmentsMatching - 2019.06.28 at 21h 52m 12s.xml">
-      <configuration name="test in StravaSegmentsMatching" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DiscretizerTests_generateRandomRouteDiscretizeItAssertDistances - 2019.06.28 at 21h 57m 53s.xml">
-      <configuration name="DiscretizerTests.generateRandomRouteDiscretizeItAssertDistances" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PointsWithinBoxTest - 2019.07.07 at 11h 51m 59s.xml">
-      <configuration name="PointsWithinBoxTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PointsWithinBoxTest - 2019.07.07 at 11h 55m 54s.xml">
-      <configuration name="PointsWithinBoxTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PointsWithinBoxTest - 2019.07.07 at 12h 02m 36s.xml">
-      <configuration name="PointsWithinBoxTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PointsWithinBoxTest - 2019.07.07 at 12h 04m 17s.xml">
-      <configuration name="PointsWithinBoxTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PointsWithinBoxTest - 2019.07.07 at 12h 04m 59s.xml">
-      <configuration name="PointsWithinBoxTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PointsWithinBoxTest - 2019.07.07 at 12h 11m 03s.xml">
-      <configuration name="PointsWithinBoxTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1280" height="999" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18638574" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31361425" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -297,7 +359,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.60162604" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34471545" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.12298851" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -391,13 +453,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/ListChunksTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/ListChunks.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -419,20 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/geospatial/Discretizer.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/geospatial/Polygons.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1327">
-          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/ParseFromGPXTest.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -442,18 +483,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/pointsWithinTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-645">
-          <caret line="50" column="48" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
+        <state relative-caret-position="337">
+          <caret line="128" column="31" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/matching/Matcher.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="450">
           <caret line="30" column="65" lean-forward="true" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
           <folding>
             <element signature="e#18#128#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/ListChunksTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+          <folding>
+            <element signature="e#14#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/geospatial/Discretizer.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/geospatial/Polygons.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="50" column="65" selection-start-line="50" selection-start-column="58" selection-end-line="50" selection-end-column="65" />
         </state>
       </provider>
     </entry>

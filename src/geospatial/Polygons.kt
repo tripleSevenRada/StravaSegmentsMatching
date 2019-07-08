@@ -53,6 +53,7 @@ class Route(private val data: List<Location>) : Discretizable {
                 candidates.add(current)
             }
         }
+        candidates.finish()
         return candidates
     }
 
@@ -118,14 +119,13 @@ class MatchingCandidates{
     private var candidates = mutableListOf<List<LocationIndex>>()
     private var currentCandidate = mutableListOf<LocationIndex>()
 
-    fun getCandidates(): List<List<LocationIndex>> {
-        if (currentCandidate.isNotEmpty()) candidates.add(currentCandidate)
-        return candidates
-    }
-
+    fun getCandidates(): List<List<LocationIndex>> = candidates
     fun add(locationIndex: LocationIndex) =  currentCandidate.add(locationIndex)
     fun makeNew(){
         candidates.add(currentCandidate)
         currentCandidate = mutableListOf<LocationIndex>()
+    }
+    fun finish() {
+        if (currentCandidate.isNotEmpty()) candidates.add(currentCandidate)
     }
 }

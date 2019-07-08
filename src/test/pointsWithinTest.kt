@@ -118,17 +118,17 @@ class PointsWithinBoxTest {
             }
         }
     }
+}
 
-    fun assertContinuity(candidate: List<LocationIndex>): Boolean{
-        if(candidate.size < 2) return true
-        else {
-            var last = candidate[0].index
-            for (i in 1..candidate.lastIndex){
-                val now = candidate[i].index
-                if (now != last + 1) return false
-                last = now
-            }
+fun assertContinuity(candidate: List<LocationIndex>): Boolean{
+    if(candidate.size < 2) return true
+    else {
+        var last = candidate[0].index
+        for (i in 1..candidate.lastIndex){
+            val now = candidate[i].index
+            if (now != last + 1) return false
+            last = now
         }
-        return true
     }
+    return true
 }
