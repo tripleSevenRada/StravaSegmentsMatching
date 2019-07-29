@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89d2f0bf-b10e-498b-bf05-9c3fb31435f0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geospatial/Polygons.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/geospatial/Polygons.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/pointsWithinTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/pointsWithinTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -128,7 +126,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="224" />
     <option name="y" value="204" />
     <option name="width" value="1346" />
@@ -347,7 +345,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1280" height="999" extended-state="6" />
+    <frame x="0" y="25" width="1280" height="999" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31361425" />
