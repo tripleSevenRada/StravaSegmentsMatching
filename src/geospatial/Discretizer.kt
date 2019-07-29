@@ -11,6 +11,7 @@ const val THRESHOLD_PARALLEL = 46
 const val CHUNK_SIZE = 26
 //--------------------------------
 
+// https://proandroiddev.com/demystifying-kotlin-coroutines-6fe1f410570b
 class Discretizer {
 
     private lateinit var start: LocationNode
@@ -84,11 +85,11 @@ class Discretizer {
         return list
     }
 
-    fun discretizeInParallel(input: Discretizable): List<Location> {
+    fun discretizeInParallel(input: Discretizable, scope: CoroutineScope): List<Location> {
         val locations = input.getElements()
         val result = mutableListOf<Location>()
         if (locations.size < THRESHOLD_PARALLEL) {
-            runBlocking {
+            runBlocking(scope.coroutineContext) {
                 result.addAll(discretize(input))
             }
             return result
@@ -96,7 +97,7 @@ class Discretizer {
 
         val chunks = ListChunks<Location>(locations, CHUNK_SIZE).chunks
 
-        runBlocking {
+        runBlocking(scope.coroutineContext) {
             val deferredArray = Array<Deferred<List<Location>>>(chunks.size) { index ->
                 async(Dispatchers.Default) { Discretizer().discretize(Route(chunks[index])) }
             }

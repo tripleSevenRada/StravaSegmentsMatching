@@ -29,6 +29,7 @@ fun getLonMargin(lon: Double): Double = when (lon) {
 
 class Route(private val data: List<Location>) : Discretizable {
 
+    // 1
     fun getPointsWithinBox(box: Box): List<LocationIndex> {
         val locIndList = mutableListOf<LocationIndex>()
         if (box is Invalid) return locIndList
@@ -38,6 +39,7 @@ class Route(private val data: List<Location>) : Discretizable {
         return locIndList
     }
 
+    // 2
     fun getMatchingCandidates(rawList: List<LocationIndex>): MatchingCandidates{
         val candidates = MatchingCandidates()
         if (rawList.isEmpty())return candidates
@@ -51,6 +53,7 @@ class Route(private val data: List<Location>) : Discretizable {
                 candidates.add(current)
             }
         }
+        candidates.finish()
         return candidates
     }
 
@@ -116,14 +119,13 @@ class MatchingCandidates{
     private var candidates = mutableListOf<List<LocationIndex>>()
     private var currentCandidate = mutableListOf<LocationIndex>()
 
-    fun getCandidates(): List<List<LocationIndex>> {
-        if (currentCandidate.isNotEmpty()) candidates.add(currentCandidate)
-        return candidates
-    }
-
+    fun getCandidates(): List<List<LocationIndex>> = candidates
     fun add(locationIndex: LocationIndex) =  currentCandidate.add(locationIndex)
     fun makeNew(){
         candidates.add(currentCandidate)
         currentCandidate = mutableListOf<LocationIndex>()
+    }
+    fun finish() {
+        if (currentCandidate.isNotEmpty()) candidates.add(currentCandidate)
     }
 }

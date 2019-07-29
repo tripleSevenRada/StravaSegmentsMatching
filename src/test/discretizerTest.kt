@@ -6,7 +6,7 @@ import geospatial.Discretizer
 import geospatial.Haversine
 import geospatial.Route
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import org.junit.Test
 import java.util.*
 
@@ -14,12 +14,16 @@ fun Location.toTrkptRecord(): String = "<trkpt lat=\"${this.lat}\" lon=\"${this.
 fun Location.toWptRecord(): String = "<wpt lat=\"${this.lat}\" lon=\"${this.lon}\"></wpt>"
 
 class DiscretizerTests {
+
+    private val job = Job()
+    private val scope = CoroutineScope(Dispatchers.Default + job)
+
     @Test
     fun testRunDiscretizer() {
         runBlocking {
             val route = Route(routeData)
             val discretized = Discretizer().discretize(route)
-            val discretizedParallel = Discretizer().discretizeInParallel(route)
+            val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(discretized.size, discretizedParallel.size)
             assert(assertListsEqual(discretized, discretizedParallel))
         }
@@ -30,7 +34,7 @@ class DiscretizerTests {
         runBlocking {
             val route = Route(listOf())
             val discretized = Discretizer().discretize(route)
-            val discretizedParallel = Discretizer().discretizeInParallel(route)
+            val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(0, discretized.size)
             assertEquals(0, discretizedParallel.size)
         }
@@ -41,7 +45,7 @@ class DiscretizerTests {
         runBlocking {
             val route = Route(listOf(Location(1.1, 1.2)))
             val discretized = Discretizer().discretize(route)
-            val discretizedParallel = Discretizer().discretizeInParallel(route)
+            val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(1, discretized.size)
             assertEquals(1, discretizedParallel.size)
             assertEquals(discretized[0].lat, 1.1)
@@ -58,7 +62,7 @@ class DiscretizerTests {
         runBlocking {
             val route = Route(listOf(Location(49.998485362, 13.995538145), Location(49.998485578, 13.995573014)))
             val discretized = Discretizer().discretize(route)
-            val discretizedParallel = Discretizer().discretizeInParallel(route)
+            val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(2, discretized.size)
             assertEquals(2, discretizedParallel.size)
         }
@@ -73,7 +77,7 @@ class DiscretizerTests {
         runBlocking {
             val route = Route(listOf(Location(49.998473293, 13.995537810), Location(49.998472862, 13.995596819)))
             val discretized = Discretizer().discretize(route)
-            val discretizedParallel = Discretizer().discretizeInParallel(route)
+            val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(3, discretized.size)
             assertEquals(3, discretizedParallel.size)
         }
@@ -120,7 +124,10 @@ class DiscretizerTests {
                 }
 
                 val start2 = System.currentTimeMillis()
-                val discretizedParallel = Discretizer().discretizeInParallel(route)
+                val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
+
+                // if(locationsCount > 47) job.cancel()
+
                 val time2 = System.currentTimeMillis() - start2
 
                 println("times: non-parallel $time1  --  parallel: $time2")
@@ -154,7 +161,7 @@ class DiscretizerTests {
                 val discretized = Discretizer().discretize(Route(locations))
                 val time1 = System.currentTimeMillis() - start1
                 val start2 = System.currentTimeMillis()
-                val discretizedParallel = Discretizer().discretizeInParallel(Route(locations))
+                val discretizedParallel = Discretizer().discretizeInParallel(Route(locations), scope)
                 val time2 = System.currentTimeMillis() - start2
 
                 println("times: non-parallel $time1  --  parallel: $time2")
@@ -201,7 +208,10 @@ class DiscretizerTests {
             discretized.forEach {
                 //println(it.toTrkptRecord())
             }
-            val discretizedParallel = Discretizer().discretizeInParallel(route)
+            val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
+
+            //scope.cancel()
+
             println("sizes: discretized: ${discretized.size}, discretized in parallel: ${discretizedParallel.size}")
             assert(assertListsEqual(discretized, discretizedParallel))
 

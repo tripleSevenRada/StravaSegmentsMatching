@@ -1,6 +1,7 @@
 package test
 
 import dataClasses.Location
+import dataClasses.LocationIndex
 import dataClasses.Valid
 import geospatial.Route
 import geospatial.Segment
@@ -97,4 +98,37 @@ class PointsWithinBoxTest {
         assertEquals(12, candidates.getCandidates()[2][2].index)
         assertEquals(13, candidates.getCandidates()[2][3].index)
     }
+
+    @Test
+    fun testContinuityInMatchingCandidatesRealData(){
+        // /home/radim/Dropbox/outFit/testMatchingCandidates/segment.gpx
+        val routes = listOf("/home/radim/Dropbox/outFit/testMatchingCandidates/route.gpx",
+                "/home/radim/Dropbox/outFit/testMatchingCandidates/route2.gpx",
+                "/home/radim/Dropbox/outFit/testMatchingCandidates/route3.gpx")
+        routes.forEach {
+            val route = Route(parseGPX(it))
+            val segment = Segment(parseGPX("/home/radim/Dropbox/outFit/testMatchingCandidates/segment.gpx"))
+            val box = segment.box
+            val rawLocationsForCandidates = route.getPointsWithinBox(box)
+            val candidates = route.getMatchingCandidates(rawLocationsForCandidates)
+            println("CANDIDATES TEST:")
+            println("CANDIDATES TEST: candidates.size = ${candidates.getCandidates().size}")
+            candidates.getCandidates().forEach {
+                assert(assertContinuity(it))
+            }
+        }
+    }
+}
+
+fun assertContinuity(candidate: List<LocationIndex>): Boolean{
+    if(candidate.size < 2) return true
+    else {
+        var last = candidate[0].index
+        for (i in 1..candidate.lastIndex){
+            val now = candidate[i].index
+            if (now != last + 1) return false
+            last = now
+        }
+    }
+    return true
 }
