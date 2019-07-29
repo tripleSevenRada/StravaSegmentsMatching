@@ -27,7 +27,9 @@ fun getLonMargin(lon: Double): Double = when (lon) {
     else -> lonMargin60_90
 }
 
-class Route(private val data: List<Location>) : Discretizable {
+open class Polygon (val data: List<Location>)
+
+class Route(data: List<Location>) : Discretizable, Polygon(data) {
 
     // 1
     fun getPointsWithinBox(box: Box): List<LocationIndex> {
@@ -62,7 +64,7 @@ class Route(private val data: List<Location>) : Discretizable {
     override fun getElements(): List<Location> = data
 }
 
-class Segment(private val data: List<Location>) : Discretizable {
+class Segment(data: List<Location>) : Discretizable, Polygon(data) {
 
     val box: Box
 
