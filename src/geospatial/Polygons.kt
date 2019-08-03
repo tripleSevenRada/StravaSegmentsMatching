@@ -27,7 +27,7 @@ fun getLonMargin(lon: Double): Double = when (lon) {
     else -> lonMargin60_90
 }
 
-open class Polygon (val data: List<Location>)
+sealed class Polygon (val data: List<Location>)
 
 class Route(data: List<Location>) : Discretizable, Polygon(data) {
 
