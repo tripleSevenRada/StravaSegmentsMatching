@@ -8,7 +8,7 @@ import utils.ListChunks
 const val DISCRETIZE_DISTANCE = 3.0
 //--------------------------------
 const val THRESHOLD_PARALLEL = 46
-const val CHUNK_SIZE = 26
+const val SEGMENTS_SIZE = 26
 //--------------------------------
 
 // https://proandroiddev.com/demystifying-kotlin-coroutines-6fe1f410570b
@@ -95,7 +95,7 @@ class Discretizer {
             return result
         }
 
-        val chunks = ListChunks<Location>(locations, CHUNK_SIZE).chunks
+        val chunks = ListChunks<Location>(locations, SEGMENTS_SIZE).chunks
 
         runBlocking(scope.coroutineContext) {
             val deferredArray = Array<Deferred<List<Location>>>(chunks.size) { index ->

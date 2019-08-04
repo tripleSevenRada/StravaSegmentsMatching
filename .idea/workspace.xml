@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="422a8c7e-09a2-4f89-94c5-bcd69d73beaa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/matchingTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geospatial/Polygons.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/geospatial/Polygons.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matching/Matcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/Matcher.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geospatial/Discretizer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/geospatial/Discretizer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ListChunksTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ListChunksTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/ListChunks.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ListSegmentation.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -33,14 +32,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/matchingTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="98" column="51" selection-start-line="98" selection-start-column="51" selection-end-line="98" selection-end-column="51" />
+            <state relative-caret-position="415">
+              <caret line="116" column="1" lean-forward="true" selection-start-line="116" selection-start-column="1" selection-end-line="116" selection-end-column="1" />
               <folding>
                 <element signature="e#14#367#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/utils/ListSegmentation.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -52,6 +60,11 @@
               <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/geospatial/Discretizer.kt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -82,6 +95,8 @@
         <option value="$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt" />
         <option value="$PROJECT_DIR$/src/matching/Matcher.kt" />
         <option value="$PROJECT_DIR$/src/test/matchingTest.kt" />
+        <option value="$PROJECT_DIR$/src/utils/ListChunks.kt" />
+        <option value="$PROJECT_DIR$/src/utils/ListSegmentation.kt" />
       </list>
     </option>
   </component>
@@ -124,7 +139,7 @@
               <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
               <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -249,7 +264,7 @@
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26251897" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27465856" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -258,7 +273,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.16747968" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.16747968" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -278,13 +293,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/geospatial/Polygons.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -304,11 +312,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/matchingTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="98" column="51" selection-start-line="98" selection-start-column="51" selection-end-line="98" selection-end-column="51" />
+        <state relative-caret-position="415">
+          <caret line="116" column="1" lean-forward="true" selection-start-line="116" selection-start-column="1" selection-end-line="116" selection-end-column="1" />
           <folding>
             <element signature="e#14#367#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/geospatial/Polygons.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/geospatial/Discretizer.kt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/ListSegmentation.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
         </state>
       </provider>
     </entry>

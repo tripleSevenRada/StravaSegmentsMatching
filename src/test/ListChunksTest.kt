@@ -1,6 +1,6 @@
 package test
 
-import geospatial.CHUNK_SIZE
+import geospatial.SEGMENTS_SIZE
 import org.junit.Test
 import utils.ListChunks
 
@@ -36,7 +36,7 @@ class ListChunksTest {
         val sets = listOf<List<Int>>(dataEmpty, data1, data2, data3, data, dataBig)
         sets.forEach { set ->
             println("SET: $set")
-            for (i in CHUNK_SIZE..CHUNK_SIZE + 8) {
+            for (i in SEGMENTS_SIZE..SEGMENTS_SIZE + 8) {
                 val chunks = ListChunks<Int>(set, i).chunks
                 println("CHUNK: $i")
                 println(chunks)
