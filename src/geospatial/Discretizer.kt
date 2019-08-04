@@ -3,12 +3,13 @@ package geospatial
 import dataClasses.Location
 import interfaces.Discretizable
 import kotlinx.coroutines.*
-import utils.ListChunks
+import utils.ListSegment
+import utils.SegmentsType
 
 const val DISCRETIZE_DISTANCE = 3.0
 //--------------------------------
 const val THRESHOLD_PARALLEL = 46
-const val SEGMENTS_SIZE = 26
+const val MIN_SEGMENTS_SIZE = 26
 //--------------------------------
 
 // https://proandroiddev.com/demystifying-kotlin-coroutines-6fe1f410570b
@@ -95,7 +96,7 @@ class Discretizer {
             return result
         }
 
-        val chunks = ListChunks<Location>(locations, SEGMENTS_SIZE).chunks
+        val chunks = ListSegment<Location>(locations, MIN_SEGMENTS_SIZE, SegmentsType.REPEAT).segments
 
         runBlocking(scope.coroutineContext) {
             val deferredArray = Array<Deferred<List<Location>>>(chunks.size) { index ->

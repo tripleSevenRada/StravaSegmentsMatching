@@ -1,63 +1,61 @@
 package utils
 
-import geospatial.SEGMENTS_SIZE
+import geospatial.MIN_SEGMENTS_SIZE
 
-class SegmentHelpFunctions{
-    fun <T>newSegment(_segments: MutableList<List<T>>, currentSegment: MutableList<T>): List<T>{
-        _segments.add(currentSegment)
-        return mutableListOf<T>()
+class SegmentHelpFunctions<T> {
+    fun newSegment(segments: MutableList<List<T>>,
+                   currentSegment: MutableList<T>): MutableList<T> {
+        segments.add(currentSegment)
+        return mutableListOf()
     }
-    fun <T>push(currentSegment: MutableList<T>, data: MutableList<T>, i: Int) {
+
+    fun push(currentSegment: MutableList<T>, data: List<T>, i: Int) {
         currentSegment.add(data[i])
     }
-    fun clipSegmentsSize(s: Int): Int = if (s < SEGMENTS_SIZE) SEGMENTS_SIZE else s
+
+    fun clipSegmentsSize(s: Int, minSegmentSize: Int): Int =
+            if (s < minSegmentSize) minSegmentSize else s
 }
 
-class ListChunks<T>(val data: List<T>, val chunkSize: Int) {
+class ListSegment<T>(private val data: List<T>,
+                     private val segmentsSize: Int,
+                     private val type: SegmentsType,
+                     private val minSegmentSize: Int = MIN_SEGMENTS_SIZE) {
+
+    // REPEAT
     // 1,2,3,4,5,6,7,8,9
     // 1,2,3-3,4,5-5,6,7-7,8,9
-    private val _chunks = mutableListOf<List<T>>()
-    val chunks: List<List<T>>
+    // NON_REPEAT
+    // 1,2,3,4,5,6,7,8,9
+    // 1,2,3-4,5,6-7,8,9
+
+    private val _segments = mutableListOf<List<T>>()
+    val segments: List<List<T>>
         get() {
-            if (data.isEmpty()) return _chunks
-            var currentChunk = mutableListOf<T>()
-            fun newChunk() {
-                _chunks.add(currentChunk)
-                currentChunk = mutableListOf<T>()
-            }
-            fun push(i: Int) {
-                currentChunk.add(data[i])
-            }
-            fun clipChunkSize(ch: Int): Int = if (ch < SEGMENTS_SIZE) SEGMENTS_SIZE else ch
-            val clippedChunk = (clipChunkSize(chunkSize)) - 1
+            if (data.isEmpty()) return _segments
+            val functions = SegmentHelpFunctions<T>()
+            var currentSegment = mutableListOf<T>()
+            val clippedSegmentSize = functions.clipSegmentsSize(segmentsSize, minSegmentSize) - 1
             for (i in data.indices) {
                 if (i == 0) {
-                    push(i)
-                    if (i == data.lastIndex) newChunk()
+                    functions.push(currentSegment, data, i)
+                    if (i == data.lastIndex) currentSegment =
+                            functions.newSegment(_segments, currentSegment)
                     continue
                 }
-                if (i % clippedChunk == 0) {
-                    push(i)
-                    newChunk()
-                    push(i)
+                if (i % clippedSegmentSize == 0) {
+                    functions.push(currentSegment, data, i)
+                    currentSegment = functions.newSegment(_segments, currentSegment)
+                    if (type == SegmentsType.REPEAT) functions.push(currentSegment, data, i)
                 } else {
-                    push(i)
+                    functions.push(currentSegment, data, i)
                 }
-                if (i == data.lastIndex) newChunk()
+                if (i == data.lastIndex) currentSegment = functions.newSegment(_segments, currentSegment)
             }
-            return _chunks
+            return _segments
         }
 }
 
-class ListSlices<T>(val data: List<T>, val sliceSize: Int) {
-    // 1,2,3,4,5,6,7,8,9
-    // 1,2,3-4,5,6-7,8,9
-    private val _slices = mutableListOf<List<T>>()
-    val slices: List<List<T>>
-        get() {
-            if (data.isEmpty()) return _slices
-
-            //TODO
-            return _slices
-        }
+enum class SegmentsType {
+    REPEAT, NON_REPEAT
 }
