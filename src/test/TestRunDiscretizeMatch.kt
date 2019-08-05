@@ -28,7 +28,7 @@ class TestRunDiscretizeMatch {
             println("CANDIDATES TEST DISCRETIZED: discretized route data size: ${routeDiscretized.getElements().size}")
         }
         val segmentRaw = parseGPX("/home/radim/Dropbox/outFit/testMatchingCandidates/segment.gpx")
-        val segmentDiscretized = Segment(Discretizer().discretizeInParallel(Segment(segmentRaw),scope))
+        val segmentDiscretized = Segment(Discretizer().discretizeInParallel(Segment(segmentRaw), scope))
         val box = segmentDiscretized.box
         routesDiscretized.forEach { route ->
             val rawLocationsForCandidates = route.getPointsWithinBox(box)

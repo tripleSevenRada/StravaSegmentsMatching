@@ -51,8 +51,9 @@ class PointsWithinBoxTest {
             assertEquals(11.0, box.maxLon, 0.001)
         }
     }
+
     @Test
-    fun testNumberOfPointsWithinAndTheirLocationsIndex(){
+    fun testNumberOfPointsWithinAndTheirLocationsIndex() {
         val segment = Segment(segmentData)
         val box = segment.box
         assert(box is Valid)
@@ -72,7 +73,7 @@ class PointsWithinBoxTest {
     }
 
     @Test
-    fun testMatchingCandidates(){
+    fun testMatchingCandidates() {
         val segment = Segment(segmentData)
         val box = segment.box
         assert(box is Valid)
@@ -100,7 +101,7 @@ class PointsWithinBoxTest {
     }
 
     @Test
-    fun testContinuityInMatchingCandidatesRealData(){
+    fun testContinuityInMatchingCandidatesRealData() {
         // /home/radim/Dropbox/outFit/testMatchingCandidates/segment.gpx
         val routes = listOf("/home/radim/Dropbox/outFit/testMatchingCandidates/route.gpx",
                 "/home/radim/Dropbox/outFit/testMatchingCandidates/route2.gpx",
@@ -120,11 +121,11 @@ class PointsWithinBoxTest {
     }
 }
 
-fun assertContinuity(candidate: List<LocationIndex>): Boolean{
-    if(candidate.size < 2) return true
+fun assertContinuity(candidate: List<LocationIndex>): Boolean {
+    if (candidate.size < 2) return true
     else {
         var last = candidate[0].index
-        for (i in 1..candidate.lastIndex){
+        for (i in 1..candidate.lastIndex) {
             val now = candidate[i].index
             if (now != last + 1) return false
             last = now
