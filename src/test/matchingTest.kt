@@ -96,13 +96,8 @@ class MatchingTest {
 
     @Test
     fun test_getMatchingResult() {
-
-        // route related
         val routeRaw = getRouteRaw()
-
-        // segment related
         val segmentRaw = getSegmentRaw()
-
         val candidates = getMatchingCandidates(routeRaw, segmentRaw)
 
         val closeEnoughValues = arrayOf<Double>(0.0, 5000000.0)
@@ -116,6 +111,8 @@ class MatchingTest {
             assertEquals(segmentRaw.getElements().size,
                     matchingResult.inliyers + matchingResult.outliyers)
 
+            //
+            //
             val config = MatchingConfig()
             var insCompare = 0
             var outsCompare = 0
@@ -135,6 +132,8 @@ class MatchingTest {
             }
             assertEquals(insCompare, matchingResult.inliyers)
             assertEquals(outsCompare, matchingResult.outliyers)
+            //
+            //
 
             for (i in closeEnoughValues.indices) {
                 val matchingResultNow = Matcher(segmentRaw, MatchingConfig(0.94, closeEnoughValues[i]))
