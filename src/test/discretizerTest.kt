@@ -6,7 +6,10 @@ import geospatial.Discretizer
 import geospatial.Haversine
 import geospatial.Route
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import java.util.*
 
@@ -100,11 +103,11 @@ class DiscretizerTests {
                 val discretized = Discretizer().discretize(route)
                 val time1 = System.currentTimeMillis() - start1
 
-                if(routeList.size < 2){
+                if (routeList.size < 2) {
                     assertEquals(discretized.size, routeList.size)
                 }
 
-                if(routeList.size > 0) {
+                if (routeList.size > 0) {
                     assertEquals(routeList[0].lat, discretized[0].lat)
                     assertEquals(routeList[0].lon, discretized[0].lon)
 
@@ -112,7 +115,7 @@ class DiscretizerTests {
                     assertEquals(routeList[routeList.lastIndex].lon, discretized[discretized.lastIndex].lon)
                 }
 
-                if(routeList.size > 2) {
+                if (routeList.size > 2) {
                     for (i in 0..discretized.size - 2) {
                         val dist = Haversine.haversineInM(
                                 discretized[i].lat,
@@ -134,13 +137,13 @@ class DiscretizerTests {
                 println("locations count: $locationsCount  out of: $repeatTest -- sizes: discretized: ${discretized.size}, discretized in parallel: ${discretizedParallel.size}")
                 assertEquals(discretized.size, discretizedParallel.size)
                 assert(assertListsEqual(discretized, discretizedParallel))
-                locationsCount ++
+                locationsCount++
             }
         }
     }
 
     @Test
-    fun realSamplesComparison(){
+    fun realSamplesComparison() {
 
         val paths = listOf<String>(
                 "/home/radim/Dropbox/outFit/segmentsTestData/discretization/realData/Bolzano_out.gpx",
@@ -218,13 +221,13 @@ class DiscretizerTests {
         }
     }
 
-    private fun assertListsEqual(list1: List<Location>, list2: List<Location>): Boolean{
+    private fun assertListsEqual(list1: List<Location>, list2: List<Location>): Boolean {
         if (list1.size != list2.size) return false
         var c = 0
         list1.forEach {
             if (it.lat != list2[c].lat) return false
             if (it.lon != list2[c].lon) return false
-            c ++
+            c++
         }
         return true
     }

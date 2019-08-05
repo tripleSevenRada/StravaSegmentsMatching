@@ -143,4 +143,30 @@ class MatchingTest {
             }
         }
     }
+
+    private val job = Job()
+    private val scope = CoroutineScope(Dispatchers.Default + job)
+
+    @Test
+    fun test_parallel_vs_non_parallel() {
+        val routeRaw = getRouteRaw()
+        val segmentRaw = getSegmentRaw()
+        val candidates = getMatchingCandidates(routeRaw, segmentRaw)
+
+        candidates.getCandidates().forEach { candidate ->
+            val startNP = System.currentTimeMillis()
+            val matchingResultNP = Matcher(segmentRaw, MatchingConfig()).getMatchingResult(candidate)
+            val milisNP = System.currentTimeMillis() - startNP
+            val startP = System.currentTimeMillis()
+            val matchingResultP = Matcher(segmentRaw, MatchingConfig()).getMatchingResultsParallel(
+                    candidate,
+                    segmentRaw,
+                    MatchingConfig(),
+                    scope)
+            val milisP = System.currentTimeMillis() - startP
+            assertEquals(matchingResultNP.inliyers, matchingResultP.inliyers)
+            assertEquals(matchingResultNP.outliyers, matchingResultP.outliyers)
+            println("test_parallel_vs_non_parallel: NP: $milisNP | P: $milisP")
+        }
+    }
 }

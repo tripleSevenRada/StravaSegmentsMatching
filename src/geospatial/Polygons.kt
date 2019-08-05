@@ -1,10 +1,6 @@
 package geospatial
 
-import dataClasses.Location
-import dataClasses.Box
-import dataClasses.Invalid
-import dataClasses.Valid
-import dataClasses.LocationIndex
+import dataClasses.*
 import interfaces.Discretizable
 
 // https://en.wikipedia.org/wiki/Discretization
@@ -26,7 +22,7 @@ fun getLonMargin(lon: Double): Double = when (lon) {
     else -> lonMargin60_90
 }
 
-sealed class Polygon (val data: List<Location>)
+sealed class Polygon(val data: List<Location>)
 
 class Route(data: List<Location>) : Discretizable, Polygon(data) {
 
@@ -41,13 +37,13 @@ class Route(data: List<Location>) : Discretizable, Polygon(data) {
     }
 
     // 2
-    fun getMatchingCandidates(rawList: List<LocationIndex>): MatchingCandidates{
+    fun getMatchingCandidates(rawList: List<LocationIndex>): MatchingCandidates {
         val candidates = MatchingCandidates()
-        if (rawList.isEmpty())return candidates
+        if (rawList.isEmpty()) return candidates
         candidates.add(rawList[0])
         var index = rawList[0].index
-        if (rawList.size > 1){
-            for (i in 1..rawList.lastIndex){
+        if (rawList.size > 1) {
+            for (i in 1..rawList.lastIndex) {
                 val current = rawList[i]
                 if (current.index > index + 1) candidates.makeNew()
                 index = current.index
@@ -98,8 +94,8 @@ class Segment(data: List<Location>) : Discretizable, Polygon(data) {
         }
     }
 
-    private fun Box.addMargin(): Box{
-        return when (this){
+    private fun Box.addMargin(): Box {
+        return when (this) {
             is Invalid -> this
             is Valid -> Valid(
                     this.minLat - latMargin,
@@ -115,17 +111,18 @@ class Segment(data: List<Location>) : Discretizable, Polygon(data) {
     override fun getElements(): List<Location> = data
 }
 
-class MatchingCandidates{
+class MatchingCandidates {
 
     private var candidates = mutableListOf<List<LocationIndex>>()
     private var currentCandidate = mutableListOf<LocationIndex>()
 
     fun getCandidates(): List<List<LocationIndex>> = candidates
-    fun add(locationIndex: LocationIndex) =  currentCandidate.add(locationIndex)
-    fun makeNew(){
+    fun add(locationIndex: LocationIndex) = currentCandidate.add(locationIndex)
+    fun makeNew() {
         candidates.add(currentCandidate)
         currentCandidate = mutableListOf<LocationIndex>()
     }
+
     fun finish() {
         if (currentCandidate.isNotEmpty()) candidates.add(currentCandidate)
     }

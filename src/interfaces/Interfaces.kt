@@ -2,10 +2,10 @@ package interfaces
 
 import dataClasses.Location
 
-interface Discretizable{
+interface Discretizable {
     fun getElements(): List<Location>
 }
 
-interface Discretizer{
+interface Discretizer {
     fun discretize(discretizable: Discretizable)
 }

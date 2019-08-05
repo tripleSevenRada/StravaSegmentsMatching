@@ -10,16 +10,17 @@ import java.io.File
 import java.io.StringReader
 import javax.xml.parsers.DocumentBuilderFactory
 
-fun parseGPX(path: String): List<Location>{
+fun parseGPX(path: String): List<Location> {
     val locations = mutableListOf<Location>()
     fun readXml(): Document {
         val xmlFile = File(path)
         val dbFactory = DocumentBuilderFactory.newInstance()
         val dBuilder = dbFactory.newDocumentBuilder()
-        val xmlInput = InputSource(StringReader(xmlFile.readText().trim().replaceFirst("^([\\W]+)<","<")))
+        val xmlInput = InputSource(StringReader(xmlFile.readText().trim().replaceFirst("^([\\W]+)<", "<")))
         val doc = dBuilder.parse(xmlInput)
         return doc
     }
+
     val doc = readXml()
 
     /*
@@ -36,11 +37,11 @@ fun parseGPX(path: String): List<Location>{
     */
 
     val nodeListTrckpt: NodeList = doc.getElementsByTagName("trkpt")
-    for(i in 0 until nodeListTrckpt.length){
+    for (i in 0 until nodeListTrckpt.length) {
         val node = nodeListTrckpt.item(i)
         val nodeElem = node as Element
-        val latS = nodeElem.getAttribute("lat");
-        val lonS = nodeElem.getAttribute("lon");
+        val latS = nodeElem.getAttribute("lat")
+        val lonS = nodeElem.getAttribute("lon")
         val latD = latS.toDouble()
         val lonD = lonS.toDouble()
         locations.add(Location(latD, lonD))
@@ -48,10 +49,10 @@ fun parseGPX(path: String): List<Location>{
     return locations
 }
 
-class ParsedGPXTests{
+class ParsedGPXTests {
 
     @Test
-    fun sanityTestReadGPX(){
+    fun sanityTestReadGPX() {
         val nodeList = parseGPX("/home/radim/Dropbox/outFit/segmentsTestData/realGPXMocks/segments/LabeLysa/noPass/Labe-Lysa-Mismatch.gpx")
         println("trackpoints: ${nodeList.size}")
 
