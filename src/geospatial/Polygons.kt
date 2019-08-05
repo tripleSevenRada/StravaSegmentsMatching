@@ -6,7 +6,6 @@ import dataClasses.Invalid
 import dataClasses.Valid
 import dataClasses.LocationIndex
 import interfaces.Discretizable
-import java.lang.RuntimeException
 
 // https://en.wikipedia.org/wiki/Discretization
 // http://www.longitudestore.com/how-big-is-one-gps-degree.html

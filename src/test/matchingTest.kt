@@ -1,10 +1,7 @@
 package test
 
 import dataClasses.Location
-import geospatial.Discretizer
-import geospatial.Haversine
-import geospatial.Route
-import geospatial.Segment
+import geospatial.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -45,7 +42,7 @@ class MatchingTest {
         val rawLocationsForCandidates = routeDiscretized.getPointsWithinBox(box)
         val candidates = routeDiscretized.getMatchingCandidates(rawLocationsForCandidates)
 
-        val matcher = Matcher(routeDiscretized, segmentMock, MatchingConfig())
+        val matcher = Matcher(segmentMock, MatchingConfig())
 
         candidates.getCandidates().forEach { matchingCandidate ->
 
@@ -65,7 +62,7 @@ class MatchingTest {
                             it.location.lat,
                             it.location.lon
                     )
-                    if(dist < minDist){
+                    if (dist < minDist) {
                         minDist = dist
                         closest = it.location
                     }
@@ -81,34 +78,67 @@ class MatchingTest {
         }
     }
 
+    private fun getRouteRaw(): Route {
+        val dataRoute = parseGPX("/home/radim/Dropbox/outFit/testMatchingCandidates/route.gpx")
+        return Route(dataRoute)
+    }
+
+    private fun getSegmentRaw(): Segment {
+        val dataSegment = parseGPX("/home/radim/Dropbox/outFit/testMatchingCandidates/segment.gpx")
+        return Segment(dataSegment)
+    }
+
+    private fun getMatchingCandidates(route: Route, segment: Segment): MatchingCandidates {
+        val box = segment.box
+        val locationsForCandidates = route.getPointsWithinBox(box)
+        return route.getMatchingCandidates(locationsForCandidates)
+    }
+
     @Test
-    fun test_getMatchingResult(){
+    fun test_getMatchingResult() {
 
         // route related
-        val dataRoute = parseGPX("/home/radim/Dropbox/outFit/testMatchingCandidates/route.gpx")
-        val routeRaw = Route(dataRoute)
+        val routeRaw = getRouteRaw()
 
         // segment related
-        val dataSegment = parseGPX("/home/radim/Dropbox/outFit/testMatchingCandidates/segment.gpx")
-        val segmentRaw = Segment(dataSegment)
-        val box = segmentRaw.box
+        val segmentRaw = getSegmentRaw()
 
-        val rawLocationsForCandidates = routeRaw.getPointsWithinBox(box)
-        val candidates = routeRaw.getMatchingCandidates(rawLocationsForCandidates)
+        val candidates = getMatchingCandidates(routeRaw, segmentRaw)
 
         val closeEnoughValues = arrayOf<Double>(0.0, 5000000.0)
         val ins = arrayOf<Int>(0, segmentRaw.getElements().size)
         val outs = arrayOf<Int>(segmentRaw.getElements().size, 0)
 
-        candidates.getCandidates().forEach{
-            val matchingResult = Matcher(routeRaw, segmentRaw, MatchingConfig()).getMatchingResult(it)
+        candidates.getCandidates().forEach { candidate ->
+            val matchingResult = Matcher(segmentRaw, MatchingConfig()).getMatchingResult(candidate)
             println("matchingResult: $matchingResult")
+
             assertEquals(segmentRaw.getElements().size,
                     matchingResult.inliyers + matchingResult.outliyers)
 
+            val config = MatchingConfig()
+            var insCompare = 0
+            var outsCompare = 0
+
+            segmentRaw.data.forEach { segmentLoc ->
+                var distMin = Double.MAX_VALUE
+                candidate.forEach { candidateLocInd ->
+                    val dist = Haversine.haversineInM(
+                            segmentLoc.lat,
+                            segmentLoc.lon,
+                            candidateLocInd.location.lat,
+                            candidateLocInd.location.lon
+                    )
+                    if (dist < distMin) distMin = dist
+                }
+                if (distMin < config.closeEnough) insCompare++ else outsCompare++
+            }
+            assertEquals(insCompare, matchingResult.inliyers)
+            assertEquals(outsCompare, matchingResult.outliyers)
+
             for (i in closeEnoughValues.indices) {
-                val matchingResultNow = Matcher(routeRaw, segmentRaw, MatchingConfig(0.94, closeEnoughValues[i]))
-                        .getMatchingResult(it)
+                val matchingResultNow = Matcher(segmentRaw, MatchingConfig(0.94, closeEnoughValues[i]))
+                        .getMatchingResult(candidate)
                 assertEquals(ins[i], matchingResultNow.inliyers)
                 assertEquals(outs[i], matchingResultNow.outliyers)
             }

@@ -1,13 +1,13 @@
 package matching
 
+import dataClasses.Location
 import dataClasses.LocationIndex
-import geospatial.Haversine
-import geospatial.Route
-import geospatial.Segment
+import geospatial.*
+import kotlinx.coroutines.*
+import utils.ListSegment
+import utils.SegmentsType.NON_REPEAT
 
-class Matcher(private val route: Route, private val segment: Segment, private val config: MatchingConfig) {
-
-    // route and segments are expected fully built
+class Matcher(private val segment: Segment, private val config: MatchingConfig) {
 
     fun getClosest(
             matchingCandidate: List<LocationIndex>,
@@ -26,30 +26,56 @@ class Matcher(private val route: Route, private val segment: Segment, private va
     }
 
     fun getMatchingResult(matchingCandidate: List<LocationIndex>,
-                          segment: Segment = this.segment,
-                          config: MatchingConfig = this.config): MatchingResult {
+                                  segment: Segment = this.segment,
+                                  config: MatchingConfig = this.config): MatchingResult {
         var inliers = 0
         var outliers = 0
-        for (index in segment.getElements().indices){
+        for (index in segment.getElements().indices) {
             val referenceInSegment = segment.getElements()[index]
-            val closest: LocationIndex = getClosest(matchingCandidate, index)?: continue
+            val closest: LocationIndex = getClosest(matchingCandidate, index) ?: continue
             val dist = Haversine.haversineInM(referenceInSegment.lat,
                     referenceInSegment.lon,
                     closest.location.lat,
                     closest.location.lon)
-            if (dist < config.closeEnough) inliers ++ else outliers ++
+            if (dist < config.closeEnough) inliers++ else outliers++
         }
         return MatchingResult(inliers, outliers)
     }
 
-    // TODO parallel getMatchingResult
+    fun getMatchingResultsParallel(matchingCandidate: List<LocationIndex>,
+                                   segment: Segment = this.segment,
+                                   config: MatchingConfig = this.config,
+                                   scope: CoroutineScope): MatchingResult {
 
+        if (segment.data.size < THRESHOLD_PARALLEL)
+            return getMatchingResult(matchingCandidate, segment, config)
+
+        val chunks = ListSegment<Location>(segment.data, MIN_SEGMENTS_SIZE * 2,
+                NON_REPEAT, MIN_SEGMENTS_SIZE).segments
+        val results: MutableList<MatchingResult> = mutableListOf()
+        runBlocking(scope.coroutineContext) {
+            val deferredArray = Array<Deferred<MatchingResult>>(chunks.size) { index ->
+                async(Dispatchers.Default) {
+                    getMatchingResult(
+                            matchingCandidate,
+                            Segment(chunks[index]),
+                            config)
+                }
+            }
+            deferredArray.forEach { deferred ->
+                val deferredMatchingResult: MatchingResult = deferred.await()
+                results.add(deferredMatchingResult)
+            }
+        }
+        return MatchingResult(results.sumBy { it.inliyers }, results.sumBy { it.outliyers })
+    }
 }
 
-const val CLOSE_ENOUGH = 5.0
-const val OUTLIERS_RATIO = 0.94
+    const val CLOSE_ENOUGH = 5.0
+    const val OUTLIERS_RATIO = 0.94
 
-data class MatchingConfig(val outliersRatio: Double = OUTLIERS_RATIO,
-                          val closeEnough: Double = CLOSE_ENOUGH)
-data class MatchingResult(val inliyers: Int,
-                          val outliyers: Int)
+    data class MatchingConfig(val outliersRatio: Double = OUTLIERS_RATIO,
+                              val closeEnough: Double = CLOSE_ENOUGH)
+
+    data class MatchingResult(val inliyers: Int,
+                              val outliyers: Int)
