@@ -7,6 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import matching.Matcher
 import matching.MatchingConfig
+import matching.MatchingResult
+import matching.isValid
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -167,6 +169,19 @@ class MatchingTest {
             assertEquals(matchingResultNP.inliyers, matchingResultP.inliyers)
             assertEquals(matchingResultNP.outliyers, matchingResultP.outliyers)
             println("test_parallel_vs_non_parallel: NP: $milisNP | P: $milisP")
+        }
+    }
+
+    @Test
+    fun testIsValid(){
+        val inliers = arrayOf(97,100,80,200,10,1,1,1,100,0)
+        val outliers = arrayOf(3,3,6,1,1,10,10,100,0,0)
+        val expectedValid = arrayOf(true,true,false,true,false,false,false,false,true,false)
+        val config = MatchingConfig(0.94,10.0)
+        for(i in 0..9) {
+            val result = MatchingResult(inliers[i], outliers[i])
+            val valid = result.isValid(config)
+            assertEquals(valid, expectedValid[i])
         }
     }
 }

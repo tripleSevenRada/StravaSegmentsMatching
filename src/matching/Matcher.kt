@@ -83,10 +83,20 @@ class Matcher(private val segment: Segment, private val config: MatchingConfig) 
 }
 
 const val CLOSE_ENOUGH = 10.0
-const val OUTLIERS_RATIO = 0.94
+const val DEFAULT_RATIO = 0.94
 
-data class MatchingConfig(val outliersRatio: Double = OUTLIERS_RATIO,
+data class MatchingConfig(val ratio: Double = DEFAULT_RATIO,
                           val closeEnough: Double = CLOSE_ENOUGH)
 
 data class MatchingResult(val inliyers: Int,
                           val outliyers: Int)
+
+fun MatchingResult.isValid(config: MatchingConfig): Boolean {
+    return if (this.inliyers < 1 || this.outliyers < 0) false
+    else {
+        val expectedPercentInliers: Double = config.ratio * 100.0
+        val percentInliers: Double = this.inliyers.toDouble() /
+                ((this.inliyers + this.outliyers).toDouble() / 100.0)
+        percentInliers > expectedPercentInliers
+    }
+}
