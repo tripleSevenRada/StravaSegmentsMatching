@@ -25,7 +25,7 @@ class DiscretizerTests {
     fun testRunDiscretizer() {
         runBlocking {
             val route = Route(routeData)
-            val discretized = Discretizer().discretize(route)
+            val discretized = Discretizer().discretize(route,3.0)
             val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(discretized.size, discretizedParallel.size)
             assert(assertListsEqual(discretized, discretizedParallel))
@@ -36,7 +36,7 @@ class DiscretizerTests {
     fun testEmpty() {
         runBlocking {
             val route = Route(listOf())
-            val discretized = Discretizer().discretize(route)
+            val discretized = Discretizer().discretize(route, 3.0)
             val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(0, discretized.size)
             assertEquals(0, discretizedParallel.size)
@@ -47,7 +47,7 @@ class DiscretizerTests {
     fun testSingle() {
         runBlocking {
             val route = Route(listOf(Location(1.1, 1.2)))
-            val discretized = Discretizer().discretize(route)
+            val discretized = Discretizer().discretize(route, 3.0)
             val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(1, discretized.size)
             assertEquals(1, discretizedParallel.size)
@@ -64,7 +64,7 @@ class DiscretizerTests {
     fun testTwoUnderDiscretizationDist() {
         runBlocking {
             val route = Route(listOf(Location(49.998485362, 13.995538145), Location(49.998485578, 13.995573014)))
-            val discretized = Discretizer().discretize(route)
+            val discretized = Discretizer().discretize(route, 3.0)
             val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(2, discretized.size)
             assertEquals(2, discretizedParallel.size)
@@ -79,7 +79,7 @@ class DiscretizerTests {
     fun testTwoOverDiscretizationDist() {
         runBlocking {
             val route = Route(listOf(Location(49.998473293, 13.995537810), Location(49.998472862, 13.995596819)))
-            val discretized = Discretizer().discretize(route)
+            val discretized = Discretizer().discretize(route, 3.0)
             val discretizedParallel = Discretizer().discretizeInParallel(route, scope)
             assertEquals(3, discretized.size)
             assertEquals(3, discretizedParallel.size)
@@ -100,7 +100,7 @@ class DiscretizerTests {
             val route = Route(routeList)
             runBlocking {
                 val start1 = System.currentTimeMillis()
-                val discretized = Discretizer().discretize(route)
+                val discretized = Discretizer().discretize(route,3.0)
                 val time1 = System.currentTimeMillis() - start1
 
                 if (routeList.size < 2) {
@@ -161,7 +161,7 @@ class DiscretizerTests {
             runBlocking {
 
                 val start1 = System.currentTimeMillis()
-                val discretized = Discretizer().discretize(Route(locations))
+                val discretized = Discretizer().discretize(Route(locations), 3.0)
                 val time1 = System.currentTimeMillis() - start1
                 val start2 = System.currentTimeMillis()
                 val discretizedParallel = Discretizer().discretizeInParallel(Route(locations), scope)
@@ -207,7 +207,7 @@ class DiscretizerTests {
         )
         val route = Route(routeList)
         runBlocking {
-            val discretized = Discretizer().discretize(route)
+            val discretized = Discretizer().discretize(route, 3.0)
             discretized.forEach {
                 //println(it.toTrkptRecord())
             }

@@ -12,6 +12,11 @@ import utils.SegmentsType.NON_REPEAT
 
 class Matcher(private val segment: Segment, private val config: MatchingConfig) {
 
+    companion object {
+        @JvmStatic fun main(args: Array<String>) {
+        }
+    }
+
     fun getClosest(
             matchingCandidate: List<LocationIndex>,
             indexInSegment: Int,
@@ -55,10 +60,10 @@ class Matcher(private val segment: Segment, private val config: MatchingConfig) 
         // println("matchingCandidate.size: ${matchingCandidate.size}")
         // println("segment.data.size: ${segment.data.size}")
 
-        if (segment.data.size < THRESHOLD_PARALLEL)
+        if (segment.getElements().size < THRESHOLD_PARALLEL)
             return getMatchingResult(matchingCandidate, segment, config)
 
-        val chunks = ListSegment<Location>(segment.data, MIN_SEGMENTS_SIZE * 2,
+        val chunks = ListSegment<Location>(segment.getElements(), MIN_SEGMENTS_SIZE * 2,
                 NON_REPEAT, MIN_SEGMENTS_SIZE).segments
 
         // println("chunks.size: ${chunks.size}")
@@ -80,6 +85,26 @@ class Matcher(private val segment: Segment, private val config: MatchingConfig) 
         }
         return MatchingResult(results.sumBy { it.inliyers }, results.sumBy { it.outliyers })
     }
+
+    fun isValidAsDirection(segment: Segment, candidate: List<LocationIndex>): Boolean {
+        val indexStartInSegment = 0;
+        val indexEndInSegment = segment.getElements().lastIndex
+        val locIndexOfStartSegmentInCandidate = getClosest(candidate, indexStartInSegment, segment)
+        val locIndexOfEndSegmentInCandidate = getClosest(candidate, indexEndInSegment, segment)
+        return if (locIndexOfStartSegmentInCandidate == null ||
+                locIndexOfEndSegmentInCandidate == null) false
+        else locIndexOfStartSegmentInCandidate.index < locIndexOfEndSegmentInCandidate.index
+    }
+}
+
+fun MatchingResult.isValidAsPolygon(config: MatchingConfig): Boolean {
+    return if (this.inliyers < 1 || this.outliyers < 0) false
+    else {
+        val expectedPercentInliyers: Double = config.ratio * 100.0
+        val actualPercentInliyers: Double = this.inliyers.toDouble() /
+                ((this.inliyers + this.outliyers).toDouble() / 100.0)
+        actualPercentInliyers > expectedPercentInliyers
+    }
 }
 
 const val CLOSE_ENOUGH = 10.0
@@ -90,13 +115,3 @@ data class MatchingConfig(val ratio: Double = DEFAULT_RATIO,
 
 data class MatchingResult(val inliyers: Int,
                           val outliyers: Int)
-
-fun MatchingResult.isValid(config: MatchingConfig): Boolean {
-    return if (this.inliyers < 1 || this.outliyers < 0) false
-    else {
-        val expectedPercentInliers: Double = config.ratio * 100.0
-        val percentInliers: Double = this.inliyers.toDouble() /
-                ((this.inliyers + this.outliyers).toDouble() / 100.0)
-        percentInliers > expectedPercentInliers
-    }
-}

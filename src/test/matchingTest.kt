@@ -8,7 +8,7 @@ import kotlinx.coroutines.Job
 import matching.Matcher
 import matching.MatchingConfig
 import matching.MatchingResult
-import matching.isValid
+import matching.isValidAsPolygon
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -119,7 +119,7 @@ class MatchingTest {
             var insCompare = 0
             var outsCompare = 0
 
-            segmentRaw.data.forEach { segmentLoc ->
+            segmentRaw.getElements().forEach { segmentLoc ->
                 var distMin = Double.MAX_VALUE
                 candidate.forEach { candidateLocInd ->
                     val dist = Haversine.haversineInM(
@@ -180,7 +180,7 @@ class MatchingTest {
         val config = MatchingConfig(0.94,10.0)
         for(i in 0..9) {
             val result = MatchingResult(inliers[i], outliers[i])
-            val valid = result.isValid(config)
+            val valid = result.isValidAsPolygon(config)
             assertEquals(valid, expectedValid[i])
         }
     }

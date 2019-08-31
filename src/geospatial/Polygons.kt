@@ -22,7 +22,7 @@ fun getLonMargin(lon: Double): Double = when (lon) {
     else -> lonMargin60_90
 }
 
-sealed class Polygon(val data: List<Location>)
+sealed class Polygon(protected val data: List<Location>)
 
 class Route(data: List<Location>) : Discretizable, Polygon(data) {
 
@@ -54,12 +54,16 @@ class Route(data: List<Location>) : Discretizable, Polygon(data) {
         return candidates
     }
 
+    override fun toString(): String {
+        return this.javaClass.simpleName + ", size: " + getElements().size
+    }
+
     //Implementation Discretizable
 
     override fun getElements(): List<Location> = data
 }
 
-class Segment(data: List<Location>) : Discretizable, Polygon(data) {
+class Segment(data: List<Location>, val name: String = "") : Discretizable, Polygon(data) {
 
     val box: Box
 
@@ -104,6 +108,10 @@ class Segment(data: List<Location>) : Discretizable, Polygon(data) {
                     this.maxLon + getLonMargin(this.maxLon)
             )
         }
+    }
+
+    override fun toString(): String {
+        return this.javaClass.simpleName + ", " + name + ", size: " + getElements().size
     }
 
     //Implementation Discretizable
