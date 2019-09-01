@@ -51,12 +51,12 @@ class Matcher(private val segment: Segment, private val config: MatchingConfig) 
         return MatchingResult(inliers, outliers)
     }
 
-    fun getMatchingResultsParallel(matchingCandidate: List<LocationIndex>,
-                                   segment: Segment = this.segment,
-                                   config: MatchingConfig = this.config,
-                                   scope: CoroutineScope): MatchingResult {
+    fun getMatchingResultParallel(matchingCandidate: List<LocationIndex>,
+                                  segment: Segment = this.segment,
+                                  config: MatchingConfig = this.config,
+                                  scope: CoroutineScope): MatchingResult {
 
-        // println("getMatchingResultsParallel")
+        // println("getMatchingResultParallel")
         // println("matchingCandidate.size: ${matchingCandidate.size}")
         // println("segment.data.size: ${segment.data.size}")
 
@@ -86,7 +86,7 @@ class Matcher(private val segment: Segment, private val config: MatchingConfig) 
         return MatchingResult(results.sumBy { it.inliyers }, results.sumBy { it.outliyers })
     }
 
-    fun isValidAsDirection(segment: Segment, candidate: List<LocationIndex>): Boolean {
+    fun areValidAsDirection(segment: Segment, candidate: List<LocationIndex>): Boolean {
         val indexStartInSegment = 0;
         val indexEndInSegment = segment.getElements().lastIndex
         val locIndexOfStartSegmentInCandidate = getClosest(candidate, indexStartInSegment, segment)

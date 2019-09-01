@@ -8,6 +8,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
 
 class DiscretizerWrapper{
+
     private val job = Job()
     private val scope = CoroutineScope(Dispatchers.Default + job)
 

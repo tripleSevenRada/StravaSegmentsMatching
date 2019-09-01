@@ -160,7 +160,7 @@ class MatchingTest {
             val matchingResultNP = Matcher(segmentRaw, MatchingConfig()).getMatchingResult(candidate)
             val milisNP = System.currentTimeMillis() - startNP
             val startP = System.currentTimeMillis()
-            val matchingResultP = Matcher(segmentRaw, MatchingConfig()).getMatchingResultsParallel(
+            val matchingResultP = Matcher(segmentRaw, MatchingConfig()).getMatchingResultParallel(
                     candidate,
                     segmentRaw,
                     MatchingConfig(),
