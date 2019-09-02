@@ -87,6 +87,7 @@ class Matcher(private val segment: Segment, private val config: MatchingConfig) 
     }
 
     fun areValidAsDirection(segment: Segment, candidate: List<LocationIndex>): Boolean {
+        if(segment.getElements().isEmpty() || candidate.isEmpty()) return false
         val indexStartInSegment = 0;
         val indexEndInSegment = segment.getElements().lastIndex
         val locIndexOfStartSegmentInCandidate = getClosest(candidate, indexStartInSegment, segment)
