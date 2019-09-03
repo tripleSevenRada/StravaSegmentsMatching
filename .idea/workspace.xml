@@ -7,11 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="422a8c7e-09a2-4f89-94c5-bcd69d73beaa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    <list default="true" id="35cbd313-189e-4a9c-8098-328f1e5ab8c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/matching/Matcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/Matcher.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/matching/MatcherWrapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/MatcherWrapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/ParseFromGPXTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ParseFromGPXTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/matchingTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/matchingTest.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,64 +21,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/matching/Matcher.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/ParseFromGPXTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="82" column="61" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/discretizerTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3604">
-              <caret line="223" column="32" selection-start-line="223" selection-start-column="16" selection-end-line="223" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/matching/MatcherWrapper.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/geospatial/Polygons.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="57" column="44" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/geospatial/Discretizer.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1700">
-              <caret line="104" column="110" selection-start-line="104" selection-start-column="110" selection-end-line="104" selection-end-column="110" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -97,84 +39,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1PeGiXy61TCyibO5TM57k7cIm8O" />
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/geospatial/DiscretizerWrapper.java" />
-        <option value="$PROJECT_DIR$/src/geospatial/Discretizer.kt" />
-        <option value="$PROJECT_DIR$/src/test/discretizerTest.kt" />
-        <option value="$PROJECT_DIR$/src/test/matchingTest.kt" />
-        <option value="$PROJECT_DIR$/src/geospatial/Polygons.kt" />
-        <option value="$PROJECT_DIR$/src/geospatial/DiscretizerWrapper.kt" />
-        <option value="$PROJECT_DIR$/src/test/ActivityType.java" />
-        <option value="$PROJECT_DIR$/src/test/MatchingScenario.java" />
-        <option value="$PROJECT_DIR$/src/test/LatLonPair.java" />
-        <option value="$PROJECT_DIR$/src/test/RequestedRoute.java" />
-        <option value="$PROJECT_DIR$/src/test/ReadSegmentsFromResponseStringSaveThemAsGPX.kt" />
-        <option value="$PROJECT_DIR$/src/test/ParseFromGPXTest.kt" />
-        <option value="$PROJECT_DIR$/src/matching/MatcherWrapper.kt" />
-        <option value="$PROJECT_DIR$/src/matching/Matcher.kt" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="6" />
-    <option name="y" value="29" />
-    <option name="width" value="1360" />
-    <option name="height" value="739" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="matching" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Strava-segments-matching-web" />
-    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/segments-matching" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../segments-matching" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -188,7 +62,22 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ParsedGPXTests.readGPXSaveAsJSONUsingJackson">
+  <component name="RunManager" selected="JUnit.MatchingTest">
+    <configuration name="MatchingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="StravaSegmentsMatching" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.MatchingTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MatchingTest.testIsValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="StravaSegmentsMatching" />
       <extension name="coverage">
@@ -200,22 +89,6 @@
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.MatchingTest" />
       <option name="METHOD_NAME" value="testIsValid" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MatchingTest.testPrintMatchingRatio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="StravaSegmentsMatching" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.gpx_to_json_requested_route.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.MatchingTest" />
-      <option name="METHOD_NAME" value="testPrintMatchingRatio" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -268,55 +141,26 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MatchingTest" />
+        <item itemvalue="JUnit.test in StravaSegmentsMatching" />
         <item itemvalue="JUnit.ParsedGPXTests.readGPXSaveAsJSONUsingJackson" />
         <item itemvalue="JUnit.ParsedGPXTests" />
-        <item itemvalue="JUnit.test in StravaSegmentsMatching" />
         <item itemvalue="JUnit.MatchingTest.testIsValid" />
-        <item itemvalue="JUnit.MatchingTest.testPrintMatchingRatio" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="35cbd313-189e-4a9c-8098-328f1e5ab8c2" name="Default Changelist" comment="" />
+      <changelist id="422a8c7e-09a2-4f89-94c5-bcd69d73beaa" name="Default Changelist" comment="" />
       <created>1565028777379</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565028777379</updated>
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="test_in_StravaSegmentsMatching - 2019.09.02 at 11h 17m 55s.xml">
-      <configuration name="test in StravaSegmentsMatching" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests - 2019.09.02 at 15h 06m 27s.xml">
-      <configuration name="ParsedGPXTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.02 at 15h 11m 00s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.02 at 15h 20m 27s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.02 at 20h 56m 13s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.02 at 20h 58m 41s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.02 at 20h 59m 36s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.03 at 10h 21m 18s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.03 at 10h 24m 46s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.03 at 10h 26m 14s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -330,229 +174,5 @@
         </entry>
       </map>
     </option>
-  <component name="ToolWindowManager">
-    <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24355084" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3284553" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.18699187" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3284553" />
-      <window_info anchor="bottom" id="Statistic" order="11" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-    </layout>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/computeBoxTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-741" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/geospatial/DiscretizerWrapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/matchingTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="121" column="36" selection-start-line="121" selection-start-column="36" selection-end-line="121" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dataClasses/Box.kt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/TestRunDiscretizeMatch.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="33" column="15" selection-start-line="33" selection-end-line="34" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/geospatial/DiscretizerWrapper.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#20#228#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/gpx_to_json_requested_route/ActivityType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/gpx_to_json_requested_route/LatLonPair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#326#327#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#475#476#0" expanded="true" />
-            <element signature="e#520#521#0" expanded="true" />
-            <element signature="e#608#609#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/gpx_to_json_requested_route/MatchingScenario.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/gpx_to_json_requested_route/RequestedRoute.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/ReadSegmentsFromResponseStringSaveThemAsGPX.kt" />
-    <entry file="file://$PROJECT_DIR$/src/test/discretizerTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3604">
-          <caret line="223" column="32" selection-start-line="223" selection-start-column="16" selection-end-line="223" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/geospatial/Polygons.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="57" column="44" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/geospatial/Discretizer.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="104" column="110" selection-start-line="104" selection-start-column="110" selection-end-line="104" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/ParseFromGPXTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="82" column="61" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/matching/MatcherWrapper.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/matching/Matcher.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
-        </state>
-      </provider>
-    </entry>
->>>>>>> c429e4ea6dbde9e231e1d7fa31135e1ae6f0da2f
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>StravaSegmentsMatching:jar</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>com.fasterxml.jackson.module:jackson-module-kotlin:2.10.0.pr2</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

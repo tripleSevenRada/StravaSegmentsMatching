@@ -41,15 +41,21 @@ fun parseGPX(path: String): List<Location> {
     </trkpt>
     */
 
-    val nodeListTrckpt: NodeList = doc.getElementsByTagName("rtept")//trkpt
-    for (i in 0 until nodeListTrckpt.length) {
-        val node = nodeListTrckpt.item(i)
-        val nodeElem = node as Element
-        val latS = nodeElem.getAttribute("lat")
-        val lonS = nodeElem.getAttribute("lon")
-        val latD = latS.toDouble()
-        val lonD = lonS.toDouble()
-        locations.add(Location(latD, lonD))
+    val locationNodeAtributes = listOf("rtept","trkpt")
+
+    var atributesCount = 0
+    while(locations.isEmpty()) {
+        val nodeListTrckpt: NodeList = doc.getElementsByTagName(locationNodeAtributes[atributesCount])//trkpt
+        for (i in 0 until nodeListTrckpt.length) {
+            val node = nodeListTrckpt.item(i)
+            val nodeElem = node as Element
+            val latS = nodeElem.getAttribute("lat")
+            val lonS = nodeElem.getAttribute("lon")
+            val latD = latS.toDouble()
+            val lonD = lonS.toDouble()
+            locations.add(Location(latD, lonD))
+        }
+        atributesCount ++
     }
     return locations
 }

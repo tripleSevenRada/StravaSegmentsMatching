@@ -5,10 +5,7 @@ import geospatial.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import matching.Matcher
-import matching.MatchingConfig
-import matching.MatchingResult
-import matching.isValidAsPolygon
+import matching.*
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -183,5 +180,26 @@ class MatchingTest {
             val valid = result.isValidAsPolygon(config)
             assertEquals(valid, expectedValid[i])
         }
+    }
+
+    @Test
+    fun testGetClosestIndexInRoute(){
+        val locations : List<Location> =
+                parseGPX("/home/radim/Dropbox/outFit/segmentsTestData/realGPXMocks/segments/LabeLysa/noPass/Labe-Lysa-Mismatch.gpx")
+        val route = Route(locations)
+        val referenceLocation = Location(50.00, 14.00)
+        val index = MatcherWrapper().getClosestIndexInRoute(route, referenceLocation)
+
+        var compare = -1
+        var closestSeen = Double.MAX_VALUE
+        for (i in route.getElements().indices){
+            val dist = Haversine.haversineInM(referenceLocation.lat, referenceLocation.lon,
+            route.getElements()[i].lat, route.getElements()[i].lon)
+            if (dist < closestSeen) {
+                closestSeen = dist
+                compare = i
+            }
+        }
+        assertEquals(compare, index)
     }
 }

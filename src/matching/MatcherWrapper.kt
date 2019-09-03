@@ -2,6 +2,7 @@ package matching
 
 import dataClasses.Location
 import dataClasses.LocationIndex
+import geospatial.Haversine
 import geospatial.Route
 import geospatial.Segment
 import kotlinx.coroutines.CoroutineScope
@@ -14,12 +15,12 @@ class MatcherWrapper {
     private val job = Job()
     private val scope = CoroutineScope(Dispatchers.Default + job)
 
-    public suspend fun cancelAndJoin(){
+    public suspend fun cancelAndJoin() {
         job.cancelAndJoin()
     }
 
     public fun matchParallel(candidate: List<LocationIndex>,
-                             segment: Segment, config: MatchingConfig): Boolean{
+                             segment: Segment, config: MatchingConfig): Boolean {
 
         val matcher = Matcher(segment, config)
         val result: MatchingResult = matcher
@@ -28,8 +29,12 @@ class MatcherWrapper {
         return result.isValidAsPolygon(config) && matcher.areValidAsDirection(segment, candidate)
     }
 
-    public fun getClosestIndexInRoute(route: Route, location: Location): Int{
-        // TODO
-        return -1
-    }
+    public fun getClosestIndexInRoute(route: Route, location: Location): Int =
+            route.getElements().withIndex().minBy { indexedValue ->
+                Haversine.haversineInM(
+                        location.lat, location.lon,
+                        indexedValue.value.lat,
+                        indexedValue.value.lon)
+            }?.index ?: 0
+
 }
