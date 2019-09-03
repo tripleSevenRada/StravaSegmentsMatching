@@ -1,11 +1,16 @@
 package test
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import dataClasses.Location
 import org.junit.Test
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.NodeList
 import org.xml.sax.InputSource
+import test.gpx_to_json_requested_route.ActivityType
+import test.gpx_to_json_requested_route.LatLonPair
+import test.gpx_to_json_requested_route.MatchingScenario
+import test.gpx_to_json_requested_route.RequestedRoute
 import java.io.File
 import java.io.StringReader
 import javax.xml.parsers.DocumentBuilderFactory
@@ -36,7 +41,7 @@ fun parseGPX(path: String): List<Location> {
     </trkpt>
     */
 
-    val nodeListTrckpt: NodeList = doc.getElementsByTagName("trkpt")
+    val nodeListTrckpt: NodeList = doc.getElementsByTagName("rtept")//trkpt
     for (i in 0 until nodeListTrckpt.length) {
         val node = nodeListTrckpt.item(i)
         val nodeElem = node as Element
@@ -63,5 +68,36 @@ class ParsedGPXTests {
 
         assert(nodeList[nodeList.lastIndex].lat == 50.184060056634998)
         assert(nodeList[nodeList.lastIndex].lon == 14.859549975738524)
+    }
+
+    @Test
+    fun readGPXSaveAsJSONUsingJackson() {
+        val mapper = ObjectMapper()
+        val pathRoot = "/home/radim/Segments/routes_with_segments/"
+        File(pathRoot + "gpx/nizborClimb/").walk().forEach {
+            if (it.isFile) {
+                val nameIn = it.name
+                println("reading: ${it.name}")
+                println("path: ${it.absolutePath}")
+                val activityType = ActivityType.RIDE
+                val matchingScenario = MatchingScenario.ROUTE
+                val nodeList = parseGPX(it.absolutePath)
+                val requestedRoute: RequestedRoute = RequestedRoute()
+                requestedRoute.type = activityType
+                requestedRoute.matchingScenario = matchingScenario
+                requestedRoute.token = "b0d77cdd6000365506e7149b77283eb064f36982"
+                val locations = mutableListOf<LatLonPair>()
+                nodeList.forEach { loc -> locations.add(LatLonPair(loc.lat, loc.lon)) }
+                requestedRoute.locations = locations
+                val jsonString = mapper.writeValueAsString(requestedRoute)
+                val outFile = File(pathRoot + "/json/" + activityType.label + "/nizborClimb/" + matchingScenario.label + "/"
+                        + nameIn.subSequence(0, nameIn.lastIndexOf('.')) + ".json")
+                println("writing: ${outFile.name}")
+                println("path: ${outFile.absolutePath}")
+                outFile.printWriter().use { out ->
+                    out.println(jsonString)
+                }
+            }
+        }
     }
 }

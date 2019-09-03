@@ -7,6 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import matching.Matcher
 import matching.MatchingConfig
+import matching.MatchingResult
+import matching.isValidAsPolygon
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -96,13 +98,8 @@ class MatchingTest {
 
     @Test
     fun test_getMatchingResult() {
-
-        // route related
         val routeRaw = getRouteRaw()
-
-        // segment related
         val segmentRaw = getSegmentRaw()
-
         val candidates = getMatchingCandidates(routeRaw, segmentRaw)
 
         val closeEnoughValues = arrayOf<Double>(0.0, 5000000.0)
@@ -116,11 +113,13 @@ class MatchingTest {
             assertEquals(segmentRaw.getElements().size,
                     matchingResult.inliyers + matchingResult.outliyers)
 
+            //
+            //
             val config = MatchingConfig()
             var insCompare = 0
             var outsCompare = 0
 
-            segmentRaw.data.forEach { segmentLoc ->
+            segmentRaw.getElements().forEach { segmentLoc ->
                 var distMin = Double.MAX_VALUE
                 candidate.forEach { candidateLocInd ->
                     val dist = Haversine.haversineInM(
@@ -135,6 +134,8 @@ class MatchingTest {
             }
             assertEquals(insCompare, matchingResult.inliyers)
             assertEquals(outsCompare, matchingResult.outliyers)
+            //
+            //
 
             for (i in closeEnoughValues.indices) {
                 val matchingResultNow = Matcher(segmentRaw, MatchingConfig(0.94, closeEnoughValues[i]))
@@ -159,7 +160,7 @@ class MatchingTest {
             val matchingResultNP = Matcher(segmentRaw, MatchingConfig()).getMatchingResult(candidate)
             val milisNP = System.currentTimeMillis() - startNP
             val startP = System.currentTimeMillis()
-            val matchingResultP = Matcher(segmentRaw, MatchingConfig()).getMatchingResultsParallel(
+            val matchingResultP = Matcher(segmentRaw, MatchingConfig()).getMatchingResultParallel(
                     candidate,
                     segmentRaw,
                     MatchingConfig(),
@@ -168,6 +169,19 @@ class MatchingTest {
             assertEquals(matchingResultNP.inliyers, matchingResultP.inliyers)
             assertEquals(matchingResultNP.outliyers, matchingResultP.outliyers)
             println("test_parallel_vs_non_parallel: NP: $milisNP | P: $milisP")
+        }
+    }
+
+    @Test
+    fun testIsValid(){
+        val inliers = arrayOf(97,100,80,200,10,1,1,1,100,0)
+        val outliers = arrayOf(3,3,6,1,1,10,10,100,0,0)
+        val expectedValid = arrayOf(true,true,false,true,false,false,false,false,true,false)
+        val config = MatchingConfig(0.94,10.0)
+        for(i in 0..9) {
+            val result = MatchingResult(inliers[i], outliers[i])
+            val valid = result.isValidAsPolygon(config)
+            assertEquals(valid, expectedValid[i])
         }
     }
 }

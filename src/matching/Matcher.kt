@@ -2,15 +2,17 @@ package matching
 
 import dataClasses.Location
 import dataClasses.LocationIndex
-import geospatial.Haversine
-import geospatial.MIN_SEGMENTS_SIZE
-import geospatial.Segment
-import geospatial.THRESHOLD_PARALLEL
+import geospatial.*
 import kotlinx.coroutines.*
 import utils.ListSegment
 import utils.SegmentsType.NON_REPEAT
 
 class Matcher(private val segment: Segment, private val config: MatchingConfig) {
+
+    companion object {
+        @JvmStatic fun main(args: Array<String>) {
+        }
+    }
 
     fun getClosest(
             matchingCandidate: List<LocationIndex>,
@@ -46,19 +48,19 @@ class Matcher(private val segment: Segment, private val config: MatchingConfig) 
         return MatchingResult(inliers, outliers)
     }
 
-    fun getMatchingResultsParallel(matchingCandidate: List<LocationIndex>,
-                                   segment: Segment = this.segment,
-                                   config: MatchingConfig = this.config,
-                                   scope: CoroutineScope): MatchingResult {
+    fun getMatchingResultParallel(matchingCandidate: List<LocationIndex>,
+                                  segment: Segment = this.segment,
+                                  config: MatchingConfig = this.config,
+                                  scope: CoroutineScope): MatchingResult {
 
-        // println("getMatchingResultsParallel")
+        // println("getMatchingResultParallel")
         // println("matchingCandidate.size: ${matchingCandidate.size}")
         // println("segment.data.size: ${segment.data.size}")
 
-        if (segment.data.size < THRESHOLD_PARALLEL)
+        if (segment.getElements().size < THRESHOLD_PARALLEL)
             return getMatchingResult(matchingCandidate, segment, config)
 
-        val chunks = ListSegment<Location>(segment.data, MIN_SEGMENTS_SIZE * 2,
+        val chunks = ListSegment<Location>(segment.getElements(), MIN_SEGMENTS_SIZE * 2,
                 NON_REPEAT, MIN_SEGMENTS_SIZE).segments
 
         // println("chunks.size: ${chunks.size}")
@@ -80,12 +82,33 @@ class Matcher(private val segment: Segment, private val config: MatchingConfig) 
         }
         return MatchingResult(results.sumBy { it.inliyers }, results.sumBy { it.outliyers })
     }
+
+    fun areValidAsDirection(segment: Segment, candidate: List<LocationIndex>): Boolean {
+        if(segment.getElements().isEmpty() || candidate.isEmpty()) return false
+        val indexStartInSegment = 0;
+        val indexEndInSegment = segment.getElements().lastIndex
+        val locIndexOfStartSegmentInCandidate = getClosest(candidate, indexStartInSegment, segment)
+        val locIndexOfEndSegmentInCandidate = getClosest(candidate, indexEndInSegment, segment)
+        return if (locIndexOfStartSegmentInCandidate == null ||
+                locIndexOfEndSegmentInCandidate == null) false
+        else locIndexOfStartSegmentInCandidate.index < locIndexOfEndSegmentInCandidate.index
+    }
 }
 
-const val CLOSE_ENOUGH = 10.0
-const val OUTLIERS_RATIO = 0.94
+fun MatchingResult.isValidAsPolygon(config: MatchingConfig): Boolean {
+    return if (this.inliyers < 1 || this.outliyers < 0) false
+    else {
+        val expectedPercentInliyers: Double = config.ratio * 100.0
+        val actualPercentInliyers: Double = this.inliyers.toDouble() /
+                ((this.inliyers + this.outliyers).toDouble() / 100.0)
+        actualPercentInliyers > expectedPercentInliyers
+    }
+}
 
-data class MatchingConfig(val outliersRatio: Double = OUTLIERS_RATIO,
+const val CLOSE_ENOUGH = 22.0
+const val DEFAULT_RATIO = 0.94
+
+data class MatchingConfig(val ratio: Double = DEFAULT_RATIO,
                           val closeEnough: Double = CLOSE_ENOUGH)
 
 data class MatchingResult(val inliyers: Int,

@@ -28,7 +28,7 @@ class Discretizer {
         }
     }
 
-    suspend fun discretize(input: Discretizable): List<Location> {
+    suspend fun discretize(input: Discretizable, discretizeDistance: Double): List<Location> {
         if (input.getElements().size < 2) return input.getElements()
         linkInput(input)
         var currentNode = start
@@ -41,7 +41,7 @@ class Discretizer {
                     pair.second.location.lat,
                     pair.second.location.lon
             )
-            if (dist < DISCRETIZE_DISTANCE) return
+            if (dist < discretizeDistance) return
             else {
                 // instantiate new LocationNode
                 val insertedNode = LocationNode(
@@ -86,12 +86,14 @@ class Discretizer {
         return list
     }
 
-    fun discretizeInParallel(input: Discretizable, scope: CoroutineScope): List<Location> {
+    fun discretizeInParallel(input: Discretizable,
+                             scope: CoroutineScope,
+                             discretizeDistance: Double = DISCRETIZE_DISTANCE): List<Location> {
         val locations = input.getElements()
         val result = mutableListOf<Location>()
         if (locations.size < THRESHOLD_PARALLEL) {
             runBlocking(scope.coroutineContext) {
-                result.addAll(discretize(input))
+                result.addAll(discretize(input, discretizeDistance))
             }
             return result
         }
@@ -100,7 +102,7 @@ class Discretizer {
 
         runBlocking(scope.coroutineContext) {
             val deferredArray = Array<Deferred<List<Location>>>(chunks.size) { index ->
-                async(Dispatchers.Default) { Discretizer().discretize(Route(chunks[index])) }
+                async(Dispatchers.Default) { Discretizer().discretize(Route(chunks[index]), discretizeDistance) }
             }
             var first = true
             deferredArray.forEach { deferred ->
