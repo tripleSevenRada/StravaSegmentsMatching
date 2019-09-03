@@ -1,6 +1,8 @@
 package matching
 
+import dataClasses.Location
 import dataClasses.LocationIndex
+import geospatial.Route
 import geospatial.Segment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,5 +26,10 @@ class MatcherWrapper {
                 .getMatchingResultParallel(matchingCandidate = candidate, scope = scope)
 
         return result.isValidAsPolygon(config) && matcher.areValidAsDirection(segment, candidate)
+    }
+
+    public fun getClosestIndexInRoute(route: Route, location: Location): Int{
+        // TODO
+        return -1
     }
 }

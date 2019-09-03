@@ -7,8 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35cbd313-189e-4a9c-8098-328f1e5ab8c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/matching/Matcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/Matcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/matching/MatcherWrapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/MatcherWrapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/ParseFromGPXTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ParseFromGPXTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -24,20 +24,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/matching/Matcher.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1377">
-              <caret line="89" column="79" selection-start-line="89" selection-start-column="79" selection-end-line="89" selection-end-column="79" />
+            <state relative-caret-position="301">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/ParseFromGPXTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="73" column="26" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+            <state relative-caret-position="255">
+              <caret line="82" column="61" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -54,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/matching/MatcherWrapper.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+            <state relative-caret-position="390">
+              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -105,14 +105,14 @@
         <option value="$PROJECT_DIR$/src/test/matchingTest.kt" />
         <option value="$PROJECT_DIR$/src/geospatial/Polygons.kt" />
         <option value="$PROJECT_DIR$/src/geospatial/DiscretizerWrapper.kt" />
-        <option value="$PROJECT_DIR$/src/matching/MatcherWrapper.kt" />
         <option value="$PROJECT_DIR$/src/test/ActivityType.java" />
         <option value="$PROJECT_DIR$/src/test/MatchingScenario.java" />
         <option value="$PROJECT_DIR$/src/test/LatLonPair.java" />
         <option value="$PROJECT_DIR$/src/test/RequestedRoute.java" />
-        <option value="$PROJECT_DIR$/src/matching/Matcher.kt" />
         <option value="$PROJECT_DIR$/src/test/ReadSegmentsFromResponseStringSaveThemAsGPX.kt" />
         <option value="$PROJECT_DIR$/src/test/ParseFromGPXTest.kt" />
+        <option value="$PROJECT_DIR$/src/matching/MatcherWrapper.kt" />
+        <option value="$PROJECT_DIR$/src/matching/Matcher.kt" />
       </list>
     </option>
   </component>
@@ -127,6 +127,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -143,14 +144,13 @@
               <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
               <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="matching" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
               <item name="StravaSegmentsMatching" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="gpx_to_json_requested_route" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="StravaSegmentsMatching" type="b2602c69:ProjectViewProjectNode" />
@@ -161,7 +161,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -286,15 +285,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.01 at 16h 47m 19s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.01 at 18h 47m 29s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.01 at 20h 45m 56s.xml">
-      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="test_in_StravaSegmentsMatching - 2019.09.02 at 11h 17m 55s.xml">
       <configuration name="test in StravaSegmentsMatching" configurationId="JUnit" />
     </history-entry>
@@ -316,11 +306,21 @@
     <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.02 at 20h 59m 36s.xml">
       <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.03 at 10h 21m 18s.xml">
+      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.03 at 10h 24m 46s.xml">
+      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParsedGPXTests_readGPXSaveAsJSONUsingJackson - 2019.09.03 at 10h 26m 14s.xml">
+      <configuration name="ParsedGPXTests.readGPXSaveAsJSONUsingJackson" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24051593" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24355084" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -423,24 +423,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/ReadSegmentsFromResponseStringSaveThemAsGPX.kt" />
-    <entry file="file://$PROJECT_DIR$/src/matching/Matcher.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="89" column="79" selection-start-line="89" selection-start-column="79" selection-end-line="89" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/discretizerTest.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3604">
           <caret line="223" column="32" selection-start-line="223" selection-start-column="16" selection-end-line="223" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/matching/MatcherWrapper.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -460,8 +446,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/ParseFromGPXTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="73" column="26" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+        <state relative-caret-position="255">
+          <caret line="82" column="61" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/matching/MatcherWrapper.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/matching/Matcher.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
         </state>
       </provider>
     </entry>

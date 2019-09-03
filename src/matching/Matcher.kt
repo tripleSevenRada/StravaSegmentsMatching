@@ -2,10 +2,7 @@ package matching
 
 import dataClasses.Location
 import dataClasses.LocationIndex
-import geospatial.Haversine
-import geospatial.MIN_SEGMENTS_SIZE
-import geospatial.Segment
-import geospatial.THRESHOLD_PARALLEL
+import geospatial.*
 import kotlinx.coroutines.*
 import utils.ListSegment
 import utils.SegmentsType.NON_REPEAT
@@ -108,7 +105,7 @@ fun MatchingResult.isValidAsPolygon(config: MatchingConfig): Boolean {
     }
 }
 
-const val CLOSE_ENOUGH = 10.0
+const val CLOSE_ENOUGH = 22.0
 const val DEFAULT_RATIO = 0.94
 
 data class MatchingConfig(val ratio: Double = DEFAULT_RATIO,

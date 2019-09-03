@@ -74,13 +74,13 @@ class ParsedGPXTests {
     fun readGPXSaveAsJSONUsingJackson() {
         val mapper = ObjectMapper()
         val pathRoot = "/home/radim/Segments/routes_with_segments/"
-        File(pathRoot + "gpx/buranosAires/").walk().forEach {
+        File(pathRoot + "gpx/nizborClimb/").walk().forEach {
             if (it.isFile) {
                 val nameIn = it.name
                 println("reading: ${it.name}")
                 println("path: ${it.absolutePath}")
                 val activityType = ActivityType.RIDE
-                val matchingScenario = MatchingScenario.LOOSE
+                val matchingScenario = MatchingScenario.ROUTE
                 val nodeList = parseGPX(it.absolutePath)
                 val requestedRoute: RequestedRoute = RequestedRoute()
                 requestedRoute.type = activityType
@@ -90,7 +90,7 @@ class ParsedGPXTests {
                 nodeList.forEach { loc -> locations.add(LatLonPair(loc.lat, loc.lon)) }
                 requestedRoute.locations = locations
                 val jsonString = mapper.writeValueAsString(requestedRoute)
-                val outFile = File(pathRoot + "/json/" + activityType.label + "/buranosAires/" + matchingScenario.label + "/"
+                val outFile = File(pathRoot + "/json/" + activityType.label + "/nizborClimb/" + matchingScenario.label + "/"
                         + nameIn.subSequence(0, nameIn.lastIndexOf('.')) + ".json")
                 println("writing: ${outFile.name}")
                 println("path: ${outFile.absolutePath}")
