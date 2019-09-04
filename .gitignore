@@ -16,6 +16,13 @@ local.properties
 .loadpath
 .recommenders
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
 *.class
 build/classes/
 
