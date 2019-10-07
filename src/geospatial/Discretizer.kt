@@ -1,5 +1,6 @@
 package geospatial
 
+import dataClasses.Elevation
 import dataClasses.Location
 import interfaces.Discretizable
 import kotlinx.coroutines.*
@@ -44,10 +45,19 @@ class Discretizer {
             if (dist < discretizeDistance) return
             else {
                 // instantiate new LocationNode
+                val elevationInstance  = if (pair.first.location.elevation is Elevation.Value
+                        && pair.second.location.elevation is Elevation.Value){
+                    val insertedNodeElevation = ((pair.first.location.elevation as Elevation.Value).elevation
+                            + (pair.second.location.elevation as Elevation.Value).elevation) / 2.0
+                    Elevation.Value(insertedNodeElevation)
+                } else Elevation.NoValue()
+
                 val insertedNode = LocationNode(
                         Location(
                                 (pair.first.location.lat + pair.second.location.lat) / 2.0,
-                                (pair.first.location.lon + pair.second.location.lon) / 2.0
+                                (pair.first.location.lon + pair.second.location.lon) / 2.0,
+                                elevationInstance
+
                         ),
                         pair.second
                 )
